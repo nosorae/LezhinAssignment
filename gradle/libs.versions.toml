@@ -52,8 +52,6 @@ squareup-okhttp3-logging-interceptor = { group = "com.squareup.okhttp3", name = 
 javax-inject = { group = "javax.inject", name = "javax.inject", version = "1" }
 kotlinx-coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version = "kotlin" }
 
-
-
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }

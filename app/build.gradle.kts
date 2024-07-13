@@ -46,7 +46,9 @@ android {
 }
 
 dependencies {
-    implementation(project(path = ":presentation"))
+    implementation(project(":data"))
+    implementation(project(":domain"))
+    implementation(project(":presentation"))
 
     implementation(libs.google.dagger.hilt.android)
     kapt(libs.google.dagger.hilt.compiler)
