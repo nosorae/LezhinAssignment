@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="screen_title_search">검색</string>
+    <string name="screen_title_bookmark">즐겨찾기</string>
+</resources>
