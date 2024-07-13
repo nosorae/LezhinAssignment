@@ -13,7 +13,7 @@ import com.yessorae.presentation.screen.saerch.searchScreen
 fun MainScreenNavHost(
     navController: NavHostController,
     modifier: Modifier = Modifier,
-    startDestination: String = SEARCH_ROUTE,
+    startDestination: String = SEARCH_ROUTE
 ) {
     NavHost(
         navController = navController,

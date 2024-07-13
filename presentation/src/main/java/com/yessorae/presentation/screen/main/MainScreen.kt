@@ -36,7 +36,7 @@ fun MainScreen(modifier: Modifier = Modifier) {
     ) { innerPadding ->
         MainScreenNavHost(
             navController = navController,
-            modifier = Modifier.padding(bottom = innerPadding.calculateBottomPadding()),
+            modifier = Modifier.padding(bottom = innerPadding.calculateBottomPadding())
         )
     }
 }
