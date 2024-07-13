@@ -22,4 +22,5 @@ dependencyResolutionManagement {
 rootProject.name = "LezhinAssignment"
 include(":app")
 include(":presentation")
+include(":domain")
 include(":data")
