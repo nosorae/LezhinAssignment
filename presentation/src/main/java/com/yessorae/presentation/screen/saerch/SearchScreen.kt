@@ -1,4 +1,4 @@
-package com.yessorae.presentation.ui.saerch
+package com.yessorae.presentation.screen.saerch
 
 import androidx.compose.runtime.Composable
 

@@ -1,4 +1,4 @@
-package com.yessorae.presentation.ui.bookmark
+package com.yessorae.presentation.screen.bookmark
 
 import androidx.compose.runtime.Composable
 
