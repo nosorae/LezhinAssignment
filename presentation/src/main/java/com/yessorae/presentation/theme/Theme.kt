@@ -1,4 +1,4 @@
-package com.yessorae.presentation.ui.theme
+package com.yessorae.presentation.theme
 
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
