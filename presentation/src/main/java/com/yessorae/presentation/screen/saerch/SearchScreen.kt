@@ -25,11 +25,8 @@ import com.yessorae.presentation.screen.saerch.model.ImageUi
 import com.yessorae.presentation.screen.saerch.model.SearchScreenUserAction
 import com.yessorae.presentation.theme.Dimen
 
-
 @Composable
-fun SearchRoute(
-    viewModel: SearchViewModel = hiltViewModel()
-) {
+fun SearchRoute(viewModel: SearchViewModel = hiltViewModel()) {
     val pagedChartGame = viewModel.pagedImageUiFlow.collectAsLazyPagingItems()
     val keyword by viewModel.searchKeyword.collectAsState()
     val showImageSearchResultUi by viewModel.showImageSearchResultUi.collectAsState()
@@ -117,4 +114,3 @@ fun SearchScreen(
         }
     }
 }
-

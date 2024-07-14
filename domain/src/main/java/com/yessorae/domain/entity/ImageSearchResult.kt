@@ -6,4 +6,3 @@ data class ImageSearchResult(
     val width: Int,
     val height: Int
 )
-

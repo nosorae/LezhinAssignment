@@ -11,5 +11,5 @@ interface KakaoImageSearchApi {
         @Query("query") keyword: String,
         @Query("page") pageNumber: Int,
         @Query("size") pageSize: Int
-    ) : ImageSearchResponseDto
+    ): ImageSearchResponseDto
 }

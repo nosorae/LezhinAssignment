@@ -2,7 +2,7 @@ package com.yessorae.data.source.network.kakao.model
 
 import com.yessorae.domain.entity.ImageSearchResult
 import kotlinx.serialization.SerialName
-import  kotlinx.serialization.Serializable
+import kotlinx.serialization.Serializable
 
 @Serializable
 data class ImageSearchResponseDto(
@@ -31,12 +31,13 @@ data class ImageDto(
 //    @SerialName("doc_url")
 //    val docUrl: String? = null,
 ) {
-    fun asDomainModel() = ImageSearchResult(
-        thumbnailUrl = thumbnailUrl ?: "",
-        imageUrl = imageUrl ?: "",
-        width = width ?: 0,
-        height = height ?: 0
-    )
+    fun asDomainModel() =
+        ImageSearchResult(
+            thumbnailUrl = thumbnailUrl ?: "",
+            imageUrl = imageUrl ?: "",
+            width = width ?: 0,
+            height = height ?: 0
+        )
 }
 
 @Serializable
@@ -48,4 +49,3 @@ data class MetaDto(
     @SerialName("total_count")
     val totalCount: Int?
 )
-

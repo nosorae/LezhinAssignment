@@ -1,12 +1,13 @@
 package com.yessorae.data.di
 
 import com.yessorae.data.BuildConfig
-import com.yessorae.data.source.network.kakao.common.KakaoApiConstants
 import com.yessorae.data.source.network.kakao.api.KakaoImageSearchApi
+import com.yessorae.data.source.network.kakao.common.KakaoApiConstants
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
 import kotlinx.serialization.json.Json
 import okhttp3.Call
 import okhttp3.Interceptor
@@ -15,7 +16,6 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.kotlinx.serialization.asConverterFactory
-import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)

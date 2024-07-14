@@ -8,9 +8,9 @@ import com.yessorae.data.common.Constants
 import com.yessorae.data.source.network.ImageSearchNetworkDataSource
 import com.yessorae.domain.entity.ImageSearchResult
 import com.yessorae.domain.respository.ImageSearchResultRepository
+import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import javax.inject.Inject
 
 class ImageSearchResultRepositoryImpl @Inject constructor(
     private val imageSearchNetworkDataSource: ImageSearchNetworkDataSource
@@ -31,5 +31,4 @@ class ImageSearchResultRepositoryImpl @Inject constructor(
                 }
             }
     }
-
 }

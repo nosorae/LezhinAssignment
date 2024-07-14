@@ -9,9 +9,10 @@ data class ImageUi( // TODO::SR-N 이름 변경
     val height: Int
 )
 
-fun ImageSearchResult.asImageUi() = ImageUi(
-    thumbnailUrl = thumbnailUrl,
-    imageUrl = imageUrl,
-    width = width,
-    height = height
-)
+fun ImageSearchResult.asImageUi() =
+    ImageUi(
+        thumbnailUrl = thumbnailUrl,
+        imageUrl = imageUrl,
+        width = width,
+        height = height
+    )
