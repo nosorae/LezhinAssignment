@@ -27,23 +27,22 @@ import com.yessorae.presentation.theme.Dimen
 
 @Composable
 fun SearchRoute(viewModel: SearchViewModel = hiltViewModel()) {
-    val pagedChartGame = viewModel.pagedImageUiFlow.collectAsLazyPagingItems()
+    val pagedImageSearchResult = viewModel.pagedImageUiFlow.collectAsLazyPagingItems()
     val keyword by viewModel.searchKeyword.collectAsState()
     val showImageSearchResultUi by viewModel.showImageSearchResultUi.collectAsState()
 
     SearchScreen(
-        pagedChartGame = pagedChartGame,
+        pagedImageSearchResult = pagedImageSearchResult,
         keyword = keyword,
         showImageSearchResultUi = showImageSearchResultUi,
         onKeywordChanged = { changedKeyword ->
-            viewModel.handleUserAction(
-                SearchScreenUserAction.SearchKeywordChange(changedKeyword)
-            )
+            viewModel.handleUserAction(userAction = SearchScreenUserAction.ChangeSearchKeyword(changedKeyword))
         },
         onClickClearKeyword = {
-            viewModel.handleUserAction(
-                SearchScreenUserAction.SearchKeywordClear
-            )
+            viewModel.handleUserAction(userAction = SearchScreenUserAction.ClearSearchKeyword)
+        },
+        onClickBookmark = { imageUi ->
+            viewModel.handleUserAction(userAction = SearchScreenUserAction.ClickBookmark(imageUi = imageUi))
         }
     )
 }
@@ -51,11 +50,12 @@ fun SearchRoute(viewModel: SearchViewModel = hiltViewModel()) {
 @Composable
 fun SearchScreen(
     modifier: Modifier = Modifier,
-    pagedChartGame: LazyPagingItems<ImageUi>,
+    pagedImageSearchResult: LazyPagingItems<ImageUi>,
     keyword: String,
     showImageSearchResultUi: Boolean,
     onKeywordChanged: (String) -> Unit,
-    onClickClearKeyword: () -> Unit
+    onClickClearKeyword: () -> Unit,
+    onClickBookmark: (ImageUi) -> Unit
 ) {
     Scaffold(
         topBar = {
@@ -86,7 +86,7 @@ fun SearchScreen(
             )
 
             if (showImageSearchResultUi) {
-                when (pagedChartGame.loadState.refresh) {
+                when (pagedImageSearchResult.loadState.refresh) {
                     is LoadState.Loading -> {
                         LezhinAssignmentCircularProgressIndicator(modifier = Modifier.fillMaxSize())
                     }
@@ -99,10 +99,11 @@ fun SearchScreen(
                         LezhinLazyVerticalStaggeredGrid(
                             modifier = Modifier.fillMaxSize(),
                             content = {
-                                items(pagedChartGame.itemCount) { index ->
-                                    pagedChartGame[index]?.let { item ->
+                                items(pagedImageSearchResult.itemCount) { index ->
+                                    pagedImageSearchResult[index]?.let { item ->
                                         ImageSearchResultListItem(
-                                            imageUi = item
+                                            imageUi = item,
+                                            onClickBookmark = { onClickBookmark(item) }
                                         )
                                     }
                                 }
