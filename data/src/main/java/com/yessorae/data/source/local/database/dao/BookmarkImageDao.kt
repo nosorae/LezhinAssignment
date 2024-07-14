@@ -1,5 +1,6 @@
 package com.yessorae.data.source.local.database.dao
 
+import androidx.paging.PagingSource
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -15,6 +16,14 @@ interface BookmarkImageDao {
         """
     )
     fun getAllBookmarkImageUrl(): Flow<List<String>>
+
+    @Query(
+        """
+            SELECT * FROM ${BookmarkImageEntity.TABLE_NAME} 
+            WHERE (:keyword = '') OR (${BookmarkImageEntity.KEYWORD} MATCH :keyword)
+        """
+    )
+    fun getBookmarkImagePagingSource(keyword: String): Flow<List<BookmarkImageEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(bookmarkImageEntity: BookmarkImageEntity)

@@ -1,10 +1,12 @@
 package com.yessorae.data.source.local.database
 
+import androidx.paging.PagingData
 import com.yessorae.domain.entity.ImageSearchResult
 import kotlinx.coroutines.flow.Flow
 
 interface BookmarkImageLocalDBDataSource {
-    fun getAllBookmarkImage(): Flow<Set<String>>
+    fun getAllBookmarkImageUrl(): Flow<Set<String>>
+    fun getPagedBookmarkImage(keyword: String): Flow<List<ImageSearchResult>>
     suspend fun insertBookmarkImage(bookmarkImage: ImageSearchResult)
-    suspend fun deleteBookmarkImage(imageUrl: String)
+    suspend fun deleteBookmarkImage(imageUrls: List<String>)
 }
