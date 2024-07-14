@@ -122,7 +122,7 @@ fun SearchScreen(
             } else {
                 LezhinAssignmentNormalTextGuide(
                     modifier = Modifier.fillMaxSize(),
-                    title = stringResource(id = R.string.common_please_input_keyword),
+                    title = stringResource(id = R.string.common_please_input_keyword)
                 )
             }
         }
