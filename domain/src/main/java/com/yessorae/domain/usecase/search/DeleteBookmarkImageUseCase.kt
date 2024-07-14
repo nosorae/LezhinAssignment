@@ -1,4 +1,4 @@
-package com.yessorae.domain.usecase
+package com.yessorae.domain.usecase.search
 
 import com.yessorae.domain.respository.BookmarkImageRepository
 import javax.inject.Inject

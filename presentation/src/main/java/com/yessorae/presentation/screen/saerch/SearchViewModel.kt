@@ -5,10 +5,10 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import androidx.paging.map
-import com.yessorae.domain.usecase.AddBookmarkImageUseCase
-import com.yessorae.domain.usecase.DeleteBookmarkImageUseCase
-import com.yessorae.domain.usecase.GetBookmarkUrlSetUseCase
-import com.yessorae.domain.usecase.SearchImageUseCase
+import com.yessorae.domain.usecase.search.AddBookmarkImageUseCase
+import com.yessorae.domain.usecase.search.DeleteBookmarkImageUseCase
+import com.yessorae.domain.usecase.search.GetBookmarkUrlSetUseCase
+import com.yessorae.domain.usecase.search.SearchImageUseCase
 import com.yessorae.presentation.screen.saerch.model.ImageUi
 import com.yessorae.presentation.screen.saerch.model.SearchScreenUserAction
 import com.yessorae.presentation.screen.saerch.model.asDomainModel
