@@ -4,5 +4,6 @@ data class ImageSearchResult(
     val thumbnailUrl: String,
     val imageUrl: String,
     val width: Int,
-    val height: Int
+    val height: Int,
+    val keyword: String
 )

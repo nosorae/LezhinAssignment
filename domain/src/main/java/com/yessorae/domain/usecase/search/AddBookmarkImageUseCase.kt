@@ -1,4 +1,4 @@
-package com.yessorae.domain.usecase.common
+package com.yessorae.domain.usecase.search
 
 import com.yessorae.domain.entity.ImageSearchResult
 import com.yessorae.domain.respository.BookmarkImageRepository
