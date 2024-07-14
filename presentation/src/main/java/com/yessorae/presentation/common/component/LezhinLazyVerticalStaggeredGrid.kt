@@ -21,8 +21,8 @@ fun LezhinLazyVerticalStaggeredGrid(
             start = Dimen.defaultSidePadding,
             end = Dimen.defaultSidePadding
         ),
-        horizontalArrangement = Arrangement.spacedBy(8.dp),
-        verticalItemSpacing = 8.dp,
+        horizontalArrangement = Arrangement.spacedBy(Dimen.defaultListItemPadding),
+        verticalItemSpacing = Dimen.defaultListItemPadding,
         modifier = modifier,
         content = content
     )
