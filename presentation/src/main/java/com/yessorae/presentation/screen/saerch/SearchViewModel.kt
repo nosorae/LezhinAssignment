@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import androidx.paging.map
-import com.yessorae.domain.usecase.common.AddBookmarkImageUseCase
+import com.yessorae.domain.usecase.search.AddBookmarkImageUseCase
 import com.yessorae.domain.usecase.common.DeleteBookmarkImageUseCase
 import com.yessorae.domain.usecase.search.GetBookmarkUrlSetUseCase
 import com.yessorae.domain.usecase.search.SearchImageUseCase
@@ -85,7 +85,7 @@ class SearchViewModel @Inject constructor(
                 is SearchScreenUserAction.ClickBookmark -> {
                     val imageUi = userAction.imageUi
                     if (imageUi.isBookmark) {
-                        deleteBookmarkImageUseCase(imageUi.imageUrl)
+                        deleteBookmarkImageUseCase(listOf(imageUi.imageUrl))
                     } else {
                         addBookmarkImageUseCase(imageUi.asDomainModel())
                     }

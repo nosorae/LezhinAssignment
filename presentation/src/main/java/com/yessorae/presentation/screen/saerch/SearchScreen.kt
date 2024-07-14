@@ -100,7 +100,7 @@ fun SearchScreen(
                         if (pagedImageSearchResult.itemCount == 0) {
                             LezhinAssignmentNormalTextGuide(
                                 modifier = Modifier.fillMaxSize(),
-                                title = stringResource(id = R.string.common_no_search_result)
+                                title = stringResource(id = R.string.search_empty_message)
                             )
                         } else {
                             LezhinLazyVerticalStaggeredGrid(
@@ -122,7 +122,7 @@ fun SearchScreen(
             } else {
                 LezhinAssignmentNormalTextGuide(
                     modifier = Modifier.fillMaxSize(),
-                    title = stringResource(id = R.string.common_please_input_keyword)
+                    title = stringResource(id = R.string.search_please_input_keyword)
                 )
             }
         }
