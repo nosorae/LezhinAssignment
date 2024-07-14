@@ -68,7 +68,7 @@ fun SearchScreen(
     ) { paddingValues ->
         Column(
             modifier = Modifier
-                .padding(paddingValues = paddingValues)
+                .padding(top = paddingValues.calculateTopPadding())
                 .fillMaxSize()
         ) {
             LezhinAssignmentTextField(

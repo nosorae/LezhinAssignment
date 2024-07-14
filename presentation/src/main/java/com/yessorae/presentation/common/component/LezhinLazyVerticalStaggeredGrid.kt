@@ -19,7 +19,8 @@ fun LezhinLazyVerticalStaggeredGrid(
         columns = StaggeredGridCells.Adaptive(150.dp),
         contentPadding = PaddingValues(
             start = Dimen.defaultSidePadding,
-            end = Dimen.defaultSidePadding
+            end = Dimen.defaultSidePadding,
+            bottom = 30.dp
         ),
         horizontalArrangement = Arrangement.spacedBy(Dimen.defaultListItemPadding),
         verticalItemSpacing = Dimen.defaultListItemPadding,
