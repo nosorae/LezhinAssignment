@@ -6,6 +6,5 @@ import javax.inject.Inject
 class DeleteBookmarkImageUseCase @Inject constructor(
     private val bookmarkImageRepository: BookmarkImageRepository
 ) {
-    suspend operator fun invoke(imageUrl: String) =
-        bookmarkImageRepository.deleteBookmarkImage(imageUrl = imageUrl)
+    suspend operator fun invoke(imageUrl: String) = bookmarkImageRepository.deleteBookmarkImage(imageUrl = imageUrl)
 }

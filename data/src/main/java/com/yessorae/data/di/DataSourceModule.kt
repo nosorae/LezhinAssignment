@@ -20,5 +20,4 @@ abstract class DataSourceModule {
     @Binds
     @Singleton
     abstract fun bindBookmarkImageLocalDBDataSource(localDBDataSource: BookmarkImageLocalDBDataSourceImpl): BookmarkImageLocalDBDataSource
-
 }

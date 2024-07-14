@@ -31,7 +31,7 @@ fun ImageSearchResultListItem(
     Box(
         modifier = modifier
             .fillMaxWidth()
-            .aspectRatio(aspectRatio),
+            .aspectRatio(aspectRatio)
     ) {
         AsyncImage(
             model = ImageRequest.Builder(context)

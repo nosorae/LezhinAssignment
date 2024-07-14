@@ -1,8 +1,8 @@
 package com.yessorae.domain.usecase
 
 import com.yessorae.domain.respository.BookmarkImageRepository
-import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
+import kotlinx.coroutines.flow.Flow
 
 class GetBookmarkUrlSetUseCase @Inject constructor(
     private val bookmarkRepository: BookmarkImageRepository

@@ -19,7 +19,6 @@ interface BookmarkImageDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(bookmarkImageEntity: BookmarkImageEntity)
 
-
     @Query(
         """
             DELETE FROM ${BookmarkImageEntity.TABLE_NAME} WHERE ${BookmarkImageEntity.COL_IMAGE_URL} = :imageUrl

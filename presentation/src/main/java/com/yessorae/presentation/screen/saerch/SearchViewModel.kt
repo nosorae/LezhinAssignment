@@ -56,7 +56,7 @@ class SearchViewModel @Inject constructor(
         .flatMapLatest { keyword ->
             combine(
                 searchImageUseCase(keyword).cachedIn(viewModelScope),
-                getBookmarkUrlSetUseCase(),
+                getBookmarkUrlSetUseCase()
             ) { pagingData, bookmarkImageUrlSet ->
                 pagingData.map { imageSearchResult ->
                     imageSearchResult.asUiModel(
@@ -66,26 +66,27 @@ class SearchViewModel @Inject constructor(
             }
         }
 
-    fun handleUserAction(userAction: SearchScreenUserAction) = viewModelScope.launch {
-        when (userAction) {
-            is SearchScreenUserAction.ChangeSearchKeyword -> {
-                _searchKeyword.value = userAction.keyword
-            }
+    fun handleUserAction(userAction: SearchScreenUserAction) =
+        viewModelScope.launch {
+            when (userAction) {
+                is SearchScreenUserAction.ChangeSearchKeyword -> {
+                    _searchKeyword.value = userAction.keyword
+                }
 
-            is SearchScreenUserAction.ClearSearchKeyword -> {
-                _searchKeyword.value = ""
-            }
+                is SearchScreenUserAction.ClearSearchKeyword -> {
+                    _searchKeyword.value = ""
+                }
 
-            is SearchScreenUserAction.ClickBookmark -> {
-                val imageUi = userAction.imageUi
-                if (imageUi.isBookmark) {
-                    deleteBookmarkImageUseCase(imageUi.imageUrl)
-                } else {
-                    addBookmarkImageUseCase(imageUi.asDomainModel())
+                is SearchScreenUserAction.ClickBookmark -> {
+                    val imageUi = userAction.imageUi
+                    if (imageUi.isBookmark) {
+                        deleteBookmarkImageUseCase(imageUi.imageUrl)
+                    } else {
+                        addBookmarkImageUseCase(imageUi.asDomainModel())
+                    }
                 }
             }
         }
-    }
 
     companion object {
         const val DEBOUNCE_TIME_MILLIS = 1000L

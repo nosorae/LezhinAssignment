@@ -26,16 +26,10 @@ data class BookmarkImageEntity(
     }
 }
 
-fun ImageSearchResult.asEntity() = BookmarkImageEntity(
-    thumbnailUrl = thumbnailUrl,
-    imageUrl = imageUrl,
-    width = width,
-    height = height
-)
-
-fun BookmarkImageEntity.toDomain() = ImageSearchResult(
-    thumbnailUrl = thumbnailUrl,
-    imageUrl = imageUrl,
-    width = width,
-    height = height
-)
+fun ImageSearchResult.asEntity() =
+    BookmarkImageEntity(
+        thumbnailUrl = thumbnailUrl,
+        imageUrl = imageUrl,
+        width = width,
+        height = height
+    )

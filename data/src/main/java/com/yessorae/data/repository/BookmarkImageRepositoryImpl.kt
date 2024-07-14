@@ -3,12 +3,12 @@ package com.yessorae.data.repository
 import com.yessorae.data.source.local.database.BookmarkImageLocalDBDataSource
 import com.yessorae.domain.entity.ImageSearchResult
 import com.yessorae.domain.respository.BookmarkImageRepository
-import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
+import kotlinx.coroutines.flow.Flow
 
 class BookmarkImageRepositoryImpl @Inject constructor(
     private val lezhinAssignmentLocalDBDataSource: BookmarkImageLocalDBDataSource
-) : BookmarkImageRepository{
+) : BookmarkImageRepository {
     override fun getAllImageUrlWithFlow(): Flow<Set<String>> {
         return lezhinAssignmentLocalDBDataSource.getAllBookmarkImage()
     }
