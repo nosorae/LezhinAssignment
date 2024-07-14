@@ -2,7 +2,7 @@ package com.yessorae.presentation.screen.saerch.model
 
 import com.yessorae.domain.entity.ImageSearchResult
 
-data class ImageUi( // TODO::SR-N 이름 변경
+data class ImageUi(
     val thumbnailUrl: String,
     val imageUrl: String,
     val width: Int,
