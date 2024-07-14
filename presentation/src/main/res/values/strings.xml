@@ -3,7 +3,8 @@
     <string name="screen_title_search">검색</string>
     <string name="screen_title_bookmark">즐겨찾기</string>
 
-    <string name="common_no_search_result">검색 결과가 없어요!\n다른 검색어로 다시 시도해주세요</string>
-    <string name="common_error_toast">"알 수 없는 오류가 발생했습니다.</string>
-    <string name="common_search_text_field_hint">검색할 키워드를 작성해주세요</string>
+    <string name="common_please_input_keyword">👆 검색할 키워드를 작성해주세요 👆</string>
+    <string name="common_no_search_result">검색 결과가 없어요! 🥶\n다른 검색어로 다시 시도해주세요</string>
+    <string name="common_error_message">"알 수 없는 오류가 발생했습니다. ⚠️</string>
+    <string name="common_search_text_field_hint">검색어 입력</string>
 </resources>
