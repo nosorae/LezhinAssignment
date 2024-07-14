@@ -5,10 +5,14 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import androidx.paging.map
+import com.yessorae.domain.usecase.AddBookmarkImageUseCase
+import com.yessorae.domain.usecase.DeleteBookmarkImageUseCase
+import com.yessorae.domain.usecase.GetBookmarkUrlSetUseCase
 import com.yessorae.domain.usecase.SearchImageUseCase
 import com.yessorae.presentation.screen.saerch.model.ImageUi
 import com.yessorae.presentation.screen.saerch.model.SearchScreenUserAction
-import com.yessorae.presentation.screen.saerch.model.asImageUi
+import com.yessorae.presentation.screen.saerch.model.asDomainModel
+import com.yessorae.presentation.screen.saerch.model.asUiModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -17,16 +21,21 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
 
 @HiltViewModel
 class SearchViewModel @Inject constructor(
-    private val searchImageUseCase: SearchImageUseCase
+    private val searchImageUseCase: SearchImageUseCase,
+    private val addBookmarkImageUseCase: AddBookmarkImageUseCase,
+    private val deleteBookmarkImageUseCase: DeleteBookmarkImageUseCase,
+    private val getBookmarkUrlSetUseCase: GetBookmarkUrlSetUseCase
 ) : ViewModel() {
     private val _searchKeyword = MutableStateFlow("")
     val searchKeyword = _searchKeyword.asStateFlow()
@@ -45,22 +54,35 @@ class SearchViewModel @Inject constructor(
         .filter { it.isNotBlank() }
         .distinctUntilChanged()
         .flatMapLatest { keyword ->
-            searchImageUseCase(keyword).map { pagingData ->
-                pagingData.map { imageResult ->
-                    imageResult.asImageUi()
+            combine(
+                searchImageUseCase(keyword).cachedIn(viewModelScope),
+                getBookmarkUrlSetUseCase(),
+            ) { pagingData, bookmarkImageUrlSet ->
+                pagingData.map { imageSearchResult ->
+                    imageSearchResult.asUiModel(
+                        isBookmark = bookmarkImageUrlSet.contains(imageSearchResult.imageUrl)
+                    )
                 }
             }
         }
-        .cachedIn(viewModelScope)
 
-    fun handleUserAction(userAction: SearchScreenUserAction) {
+    fun handleUserAction(userAction: SearchScreenUserAction) = viewModelScope.launch {
         when (userAction) {
-            is SearchScreenUserAction.SearchKeywordChange -> {
+            is SearchScreenUserAction.ChangeSearchKeyword -> {
                 _searchKeyword.value = userAction.keyword
             }
 
-            is SearchScreenUserAction.SearchKeywordClear -> {
+            is SearchScreenUserAction.ClearSearchKeyword -> {
                 _searchKeyword.value = ""
+            }
+
+            is SearchScreenUserAction.ClickBookmark -> {
+                val imageUi = userAction.imageUi
+                if (imageUi.isBookmark) {
+                    deleteBookmarkImageUseCase(imageUi.imageUrl)
+                } else {
+                    addBookmarkImageUseCase(imageUi.asDomainModel())
+                }
             }
         }
     }

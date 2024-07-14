@@ -36,14 +36,13 @@ fun SearchRoute(viewModel: SearchViewModel = hiltViewModel()) {
         keyword = keyword,
         showImageSearchResultUi = showImageSearchResultUi,
         onKeywordChanged = { changedKeyword ->
-            viewModel.handleUserAction(
-                SearchScreenUserAction.SearchKeywordChange(changedKeyword)
-            )
+            viewModel.handleUserAction(userAction = SearchScreenUserAction.ChangeSearchKeyword(changedKeyword))
         },
         onClickClearKeyword = {
-            viewModel.handleUserAction(
-                SearchScreenUserAction.SearchKeywordClear
-            )
+            viewModel.handleUserAction(userAction = SearchScreenUserAction.ClearSearchKeyword)
+        },
+        onClickBookmark = { imageUi ->
+            viewModel.handleUserAction(userAction = SearchScreenUserAction.ClickBookmark(imageUi = imageUi))
         }
     )
 }
@@ -55,7 +54,8 @@ fun SearchScreen(
     keyword: String,
     showImageSearchResultUi: Boolean,
     onKeywordChanged: (String) -> Unit,
-    onClickClearKeyword: () -> Unit
+    onClickClearKeyword: () -> Unit,
+    onClickBookmark: (ImageUi) -> Unit
 ) {
     Scaffold(
         topBar = {
@@ -102,7 +102,8 @@ fun SearchScreen(
                                 items(pagedImageSearchResult.itemCount) { index ->
                                     pagedImageSearchResult[index]?.let { item ->
                                         ImageSearchResultListItem(
-                                            imageUi = item
+                                            imageUi = item,
+                                            onClickBookmark = { onClickBookmark(item) }
                                         )
                                     }
                                 }

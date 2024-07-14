@@ -6,13 +6,21 @@ data class ImageUi(
     val thumbnailUrl: String,
     val imageUrl: String,
     val width: Int,
-    val height: Int
+    val height: Int,
+    val isBookmark: Boolean
 )
 
-fun ImageSearchResult.asImageUi() =
-    ImageUi(
-        thumbnailUrl = thumbnailUrl,
-        imageUrl = imageUrl,
-        width = width,
-        height = height
-    )
+fun ImageSearchResult.asUiModel(isBookmark: Boolean): ImageUi = ImageUi(
+    thumbnailUrl = thumbnailUrl,
+    imageUrl = imageUrl,
+    width = width,
+    height = height,
+    isBookmark = isBookmark
+)
+
+fun ImageUi.asDomainModel(): ImageSearchResult = ImageSearchResult(
+    thumbnailUrl = thumbnailUrl,
+    imageUrl = imageUrl,
+    width = width,
+    height = height
+)

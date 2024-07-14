@@ -1,9 +1,11 @@
 package com.yessorae.domain.respository
 
-import com.yessorae.domain.entity.BookmarkImage
+import com.yessorae.domain.entity.ImageSearchResult
+import kotlinx.coroutines.flow.Flow
 
 
 interface BookmarkImageRepository {
-    suspend fun getImage(imageUrl: String): BookmarkImage
-    suspend fun updateImageBookmark(imageUrl: String, isBookmark: Boolean)
+    fun getAllImageUrlWithFlow(): Flow<Set<String>>
+    suspend fun insertBookmarkImage(imageSearchResult: ImageSearchResult)
+    suspend fun deleteBookmarkImage(imageUrl: String)
 }
