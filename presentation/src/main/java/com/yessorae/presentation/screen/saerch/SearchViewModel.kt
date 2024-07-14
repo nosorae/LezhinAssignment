@@ -17,6 +17,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -41,7 +42,11 @@ class SearchViewModel @Inject constructor(
     val searchKeyword = _searchKeyword.asStateFlow()
 
     val showImageSearchResultUi = _searchKeyword
-        .map { it.isNotBlank() }
+        .map { keyword ->
+            val isNotEmpty = keyword.isNotEmpty()
+            if (isNotEmpty) delay(DEBOUNCE_TIME_MILLIS)
+            isNotEmpty
+        }
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(5_000L),

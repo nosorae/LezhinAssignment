@@ -18,6 +18,7 @@ import com.yessorae.presentation.R
 import com.yessorae.presentation.common.component.LezhinAssignMainTopAppBar
 import com.yessorae.presentation.common.component.LezhinAssignmentCircularProgressIndicator
 import com.yessorae.presentation.common.component.LezhinAssignmentErrorGuide
+import com.yessorae.presentation.common.component.LezhinAssignmentNormalTextGuide
 import com.yessorae.presentation.common.component.LezhinAssignmentTextField
 import com.yessorae.presentation.common.component.LezhinLazyVerticalStaggeredGrid
 import com.yessorae.presentation.screen.saerch.component.ImageSearchResultListItem
@@ -96,21 +97,33 @@ fun SearchScreen(
                     }
 
                     is LoadState.NotLoading -> {
-                        LezhinLazyVerticalStaggeredGrid(
-                            modifier = Modifier.fillMaxSize(),
-                            content = {
-                                items(pagedImageSearchResult.itemCount) { index ->
-                                    pagedImageSearchResult[index]?.let { item ->
-                                        ImageSearchResultListItem(
-                                            imageUi = item,
-                                            onClickBookmark = { onClickBookmark(item) }
-                                        )
+                        if (pagedImageSearchResult.itemCount == 0) {
+                            LezhinAssignmentNormalTextGuide(
+                                modifier = Modifier.fillMaxSize(),
+                                title = stringResource(id = R.string.common_no_search_result)
+                            )
+                        } else {
+                            LezhinLazyVerticalStaggeredGrid(
+                                modifier = Modifier.fillMaxSize(),
+                                content = {
+                                    items(pagedImageSearchResult.itemCount) { index ->
+                                        pagedImageSearchResult[index]?.let { item ->
+                                            ImageSearchResultListItem(
+                                                imageUi = item,
+                                                onClickBookmark = { onClickBookmark(item) }
+                                            )
+                                        }
                                     }
                                 }
-                            }
-                        )
+                            )
+                        }
                     }
                 }
+            } else {
+                LezhinAssignmentNormalTextGuide(
+                    modifier = Modifier.fillMaxSize(),
+                    title = stringResource(id = R.string.common_please_input_keyword)
+                )
             }
         }
     }
