@@ -6,6 +6,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.staggeredgrid.items
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -38,24 +40,25 @@ fun BookmarkScreenRoute(
         screenState = screenState,
         keyword = keyword,
         onKeywordChanged = { changedKeyword ->
-            viewModel.handleUserAction(
-                userAction = BookmarkScreenUserAction.ChangeSearchKeyword(changedKeyword)
-            )
+            viewModel.handleUserAction(userAction = BookmarkScreenUserAction.ChangeSearchKeyword(changedKeyword))
         },
-        onClickClearKeyword = {
-            viewModel.handleUserAction(
-                userAction = BookmarkScreenUserAction.ClearSearchKeyword
-            )
+        onClickClearKeywordIcon = {
+            viewModel.handleUserAction(userAction = BookmarkScreenUserAction.ClearSearchKeyword)
         },
-        onClickDelete = { bookmarkImageUi ->
-            viewModel.handleUserAction(
-                userAction = BookmarkScreenUserAction.ClickDeleteSingleBookmark(bookmarkImageUi)
-            )
+        onClickSingleDeleteIcon = { bookmarkImageUi ->
+            viewModel.handleUserAction(userAction = BookmarkScreenUserAction.ClickDeleteSingleBookmark(bookmarkImageUi))
         },
         onClickSelectableBookmarkImageUi = { selectableBookmarkImageUi ->
-            viewModel.handleUserAction(
-                userAction = BookmarkScreenUserAction.ClickBookmarkImageForMultipleDelete(selectableBookmarkImageUi)
-            )
+            viewModel.handleUserAction(userAction = BookmarkScreenUserAction.ClickBookmarkImageForMultipleDelete(selectableBookmarkImageUi))
+        },
+        onClickEditIcon = {
+            viewModel.handleUserAction(userAction = BookmarkScreenUserAction.ClickEditMode)
+        },
+        onClickMultipleDeleteIcon = {
+            viewModel.handleUserAction(userAction = BookmarkScreenUserAction.ClickDeleteMultipleBookmark)
+        },
+        onClickCancelEditIcon = {
+            viewModel.handleUserAction(userAction = BookmarkScreenUserAction.ClickCancelEditMode)
         }
     )
 }
@@ -66,16 +69,40 @@ fun BookmarkScreen(
     screenState: BookmarkScreenState,
     keyword: String,
     onKeywordChanged: (String) -> Unit,
-    onClickClearKeyword: () -> Unit,
-    onClickDelete: (BookmarkImageUi) -> Unit,
-    onClickSelectableBookmarkImageUi: (SelectableBookmarkImageUi) -> Unit
-
+    onClickClearKeywordIcon: () -> Unit,
+    onClickSingleDeleteIcon: (BookmarkImageUi) -> Unit,
+    onClickSelectableBookmarkImageUi: (SelectableBookmarkImageUi) -> Unit,
+    onClickEditIcon: () -> Unit,
+    onClickMultipleDeleteIcon: () -> Unit,
+    onClickCancelEditIcon: () -> Unit,
 ) {
     Scaffold(
         topBar = {
             LezhinAssignMainTopAppBar(
                 title = stringResource(id = R.string.screen_title_search),
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.fillMaxWidth(),
+                actions = {
+                    when (screenState) {
+                        is BookmarkScreenState.Success -> {
+                            TextButton(onClick = onClickEditIcon) {
+                                Text(text = stringResource(id = R.string.bookmark_edit))
+                            }
+                        }
+
+                        is BookmarkScreenState.Edit -> {
+                            TextButton(onClick = onClickMultipleDeleteIcon) {
+                                Text(text = stringResource(id = R.string.bookmark_delete))
+                            }
+                            TextButton(onClick = onClickCancelEditIcon) {
+                                Text(text = stringResource(id = R.string.bookmark_cancel_edit_mode))
+                            }
+                        }
+
+                        else -> {
+                            // do nothing
+                        }
+                    }
+                }
             )
         },
         modifier = modifier
@@ -96,7 +123,7 @@ fun BookmarkScreen(
                 keyword = keyword,
                 hint = stringResource(id = R.string.common_search_text_field_hint),
                 onKeywordChanged = onKeywordChanged,
-                onClickClearKeyword = onClickClearKeyword
+                onClickClearKeyword = onClickClearKeywordIcon
             )
 
             when (screenState) {
@@ -118,7 +145,7 @@ fun BookmarkScreen(
                             items(screenState.bookmarkImages) { item ->
                                 BookmarkListItem(
                                     bookmarkImageUi = item,
-                                    onClickDelete = { onClickDelete(item) }
+                                    onClickDelete = { onClickSingleDeleteIcon(item) }
                                 )
                             }
                         }

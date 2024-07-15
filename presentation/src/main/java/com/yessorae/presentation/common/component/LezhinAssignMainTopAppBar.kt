@@ -1,5 +1,6 @@
 package com.yessorae.presentation.common.component
 
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -10,10 +11,12 @@ import androidx.compose.ui.Modifier
 @Composable
 fun LezhinAssignMainTopAppBar(
     modifier: Modifier = Modifier,
-    title: String
+    title: String,
+    actions: @Composable RowScope.() -> Unit = {},
 ) {
     TopAppBar(
         title = { Text(text = title) },
-        modifier = modifier
+        modifier = modifier,
+        actions = actions
     )
 }

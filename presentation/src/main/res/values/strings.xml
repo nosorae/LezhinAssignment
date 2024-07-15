@@ -10,6 +10,9 @@
     <!-- bookmark -->
     <string name="bookmark_empty_message">북마크한 이미지가 없어요! 🥶</string>
     <string name="bookmark_search_with_keyword">'%s'로 검색</string>
+    <string name="bookmark_edit">수정</string>
+    <string name="bookmark_cancel_edit_mode">취소</string>
+    <string name="bookmark_delete">삭제</string>
 
     <!-- common text -->
     <string name="common_error_message">"알 수 없는 오류가 발생했습니다. ⚠️</string>
