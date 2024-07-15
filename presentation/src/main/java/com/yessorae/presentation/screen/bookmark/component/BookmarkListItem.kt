@@ -34,14 +34,11 @@ fun BookmarkListItem(
     val aspectRatio = bookmarkImageUi.width.toFloat() / bookmarkImageUi.height.toFloat()
 
     Column(
-        modifier = modifier.fillMaxWidth(),
-        verticalArrangement = Arrangement.spacedBy(4.dp)
+        modifier = modifier,
+        verticalArrangement = Arrangement.spacedBy(4.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .aspectRatio(aspectRatio)
-        ) {
+        Box {
             AsyncImage(
                 model = ImageRequest.Builder(context)
                     .data(bookmarkImageUi.thumbnailUrl)
@@ -50,8 +47,10 @@ fun BookmarkListItem(
                     .build(),
                 contentDescription = "Image",
                 contentScale = ContentScale.Crop,
-
-                )
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .aspectRatio(aspectRatio)
+            )
 
             IconButton(
                 onClick = onClickDelete,
@@ -66,7 +65,8 @@ fun BookmarkListItem(
 
         Text(
             text = stringResource(id = R.string.bookmark_search_with_keyword).format(bookmarkImageUi.keyword),
-            style = MaterialTheme.typography.labelSmall
+            style = MaterialTheme.typography.labelSmall,
+            maxLines = 1
         )
     }
 }
