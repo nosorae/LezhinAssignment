@@ -1,6 +1,5 @@
 package com.yessorae.data.source.local.database
 
-import androidx.paging.PagingData
 import com.yessorae.domain.entity.ImageSearchResult
 import kotlinx.coroutines.flow.Flow
 

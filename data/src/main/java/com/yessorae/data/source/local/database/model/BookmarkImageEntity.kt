@@ -29,18 +29,20 @@ data class BookmarkImageEntity(
     }
 }
 
-fun BookmarkImageEntity.asDomainModel() = ImageSearchResult(
-    thumbnailUrl = thumbnailUrl,
-    imageUrl = imageUrl,
-    width = width,
-    height = height,
-    keyword = keyword
-)
+fun BookmarkImageEntity.asDomainModel() =
+    ImageSearchResult(
+        thumbnailUrl = thumbnailUrl,
+        imageUrl = imageUrl,
+        width = width,
+        height = height,
+        keyword = keyword
+    )
 
-fun ImageSearchResult.asEntity() = BookmarkImageEntity(
-    thumbnailUrl = thumbnailUrl,
-    imageUrl = imageUrl,
-    width = width,
-    height = height,
-    keyword = keyword
-)
+fun ImageSearchResult.asEntity() =
+    BookmarkImageEntity(
+        thumbnailUrl = thumbnailUrl,
+        imageUrl = imageUrl,
+        width = width,
+        height = height,
+        keyword = keyword
+    )

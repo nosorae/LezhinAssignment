@@ -30,9 +30,7 @@ import com.yessorae.presentation.screen.bookmark.model.SelectableBookmarkImageUi
 import com.yessorae.presentation.theme.Dimen
 
 @Composable
-fun BookmarkScreenRoute(
-    viewModel: BookmarkViewModel = hiltViewModel()
-) {
+fun BookmarkScreenRoute(viewModel: BookmarkViewModel = hiltViewModel()) {
     val screenState by viewModel.screenState.collectAsState()
     val keyword by viewModel.searchKeyword.collectAsState()
 
@@ -74,7 +72,7 @@ fun BookmarkScreen(
     onClickSelectableBookmarkImageUi: (SelectableBookmarkImageUi) -> Unit,
     onClickEditIcon: () -> Unit,
     onClickMultipleDeleteIcon: () -> Unit,
-    onClickCancelEditIcon: () -> Unit,
+    onClickCancelEditIcon: () -> Unit
 ) {
     Scaffold(
         topBar = {

@@ -7,7 +7,7 @@ sealed interface BookmarkScreenUserAction {
 
     data class ClickDeleteSingleBookmark(val bookmark: BookmarkImageUi) : BookmarkScreenUserAction
 
-    data object ClickEditMode: BookmarkScreenUserAction
+    data object ClickEditMode : BookmarkScreenUserAction
 
     data class ClickBookmarkImageForMultipleDelete(val selectableBookmarkImageUi: SelectableBookmarkImageUi) : BookmarkScreenUserAction
 

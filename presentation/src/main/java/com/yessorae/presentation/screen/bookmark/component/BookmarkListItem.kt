@@ -58,7 +58,7 @@ fun BookmarkListItem(
             ) {
                 Icon(
                     imageVector = Icons.Default.Close,
-                    contentDescription = "Delete",
+                    contentDescription = "Delete"
                 )
             }
         }
@@ -70,4 +70,3 @@ fun BookmarkListItem(
         )
     }
 }
-

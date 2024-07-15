@@ -10,6 +10,7 @@ import com.yessorae.presentation.screen.bookmark.model.asSelectableUiModel
 import com.yessorae.presentation.screen.bookmark.model.asUiModel
 import com.yessorae.presentation.screen.saerch.SearchViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -23,7 +24,6 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onSubscription
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 @HiltViewModel
 class BookmarkViewModel @Inject constructor(
@@ -66,7 +66,7 @@ class BookmarkViewModel @Inject constructor(
                 }
                 .collect { (keyword, bookmarkUiList) ->
                     if (bookmarkUiList.isEmpty()) {
-                        _screenState.value = if (keyword.isEmpty())  {
+                        _screenState.value = if (keyword.isEmpty()) {
                             BookmarkScreenState.EmptyBookmarkImage
                         } else {
                             BookmarkScreenState.EmptyFilteredBookmarkImage
@@ -75,7 +75,7 @@ class BookmarkViewModel @Inject constructor(
                     }
 
                     _screenState.value = BookmarkScreenState.Success(
-                        bookmarkImages = bookmarkUiList,
+                        bookmarkImages = bookmarkUiList
                     )
                 }
         }

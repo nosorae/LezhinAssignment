@@ -1,6 +1,5 @@
 package com.yessorae.data.source.local.database.dao
 
-import androidx.paging.PagingSource
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy

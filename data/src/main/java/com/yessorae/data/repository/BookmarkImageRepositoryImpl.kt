@@ -1,6 +1,5 @@
 package com.yessorae.data.repository
 
-import androidx.paging.PagingData
 import com.yessorae.data.source.local.database.BookmarkImageLocalDBDataSource
 import com.yessorae.domain.entity.ImageSearchResult
 import com.yessorae.domain.respository.BookmarkImageRepository

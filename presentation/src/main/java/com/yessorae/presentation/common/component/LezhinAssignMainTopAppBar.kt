@@ -12,7 +12,7 @@ import androidx.compose.ui.Modifier
 fun LezhinAssignMainTopAppBar(
     modifier: Modifier = Modifier,
     title: String,
-    actions: @Composable RowScope.() -> Unit = {},
+    actions: @Composable RowScope.() -> Unit = {}
 ) {
     TopAppBar(
         title = { Text(text = title) },
