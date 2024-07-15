@@ -20,7 +20,7 @@ interface BookmarkImageDao {
     @Query(
         """
             SELECT * FROM ${BookmarkImageEntity.TABLE_NAME} 
-            WHERE (:keyword = '') OR (${BookmarkImageEntity.KEYWORD} MATCH :keyword)
+            WHERE (:keyword = '') OR (${BookmarkImageEntity.KEYWORD} LIKE '%' || :keyword || '%')
         """
     )
     fun getBookmarkImagePagingSource(keyword: String): Flow<List<BookmarkImageEntity>>

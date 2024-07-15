@@ -2,11 +2,9 @@ package com.yessorae.data.source.local.database.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
-import androidx.room.Fts4
 import androidx.room.PrimaryKey
 import com.yessorae.domain.entity.ImageSearchResult
 
-@Fts4
 @Entity(tableName = BookmarkImageEntity.TABLE_NAME)
 data class BookmarkImageEntity(
     @ColumnInfo(name = COL_THUMBNAIL_URL)
