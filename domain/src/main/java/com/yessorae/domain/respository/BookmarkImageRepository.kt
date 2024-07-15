@@ -5,6 +5,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface BookmarkImageRepository {
     fun getAllImageUrlWithFlow(): Flow<Set<String>>
+    fun getPagedBookmarkImage(keyword: String): Flow<List<ImageSearchResult>>
     suspend fun insertBookmarkImage(imageSearchResult: ImageSearchResult)
-    suspend fun deleteBookmarkImage(imageUrl: String)
+    suspend fun deleteBookmarkImage(imageUrls: List<String>)
 }

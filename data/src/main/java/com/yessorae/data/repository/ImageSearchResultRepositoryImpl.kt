@@ -27,7 +27,7 @@ class ImageSearchResultRepositoryImpl @Inject constructor(
             .flow
             .map { pagingData ->
                 pagingData.map { imageDto ->
-                    imageDto.asDomainModel()
+                    imageDto.asDomainModel(keyword = keyword)
                 }
             }
     }

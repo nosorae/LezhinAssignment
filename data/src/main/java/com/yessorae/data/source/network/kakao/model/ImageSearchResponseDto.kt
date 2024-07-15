@@ -31,12 +31,13 @@ data class ImageDto(
 //    @SerialName("doc_url")
 //    val docUrl: String? = null,
 ) {
-    fun asDomainModel() =
+    fun asDomainModel(keyword: String) =
         ImageSearchResult(
             thumbnailUrl = thumbnailUrl ?: "",
             imageUrl = imageUrl ?: "",
             width = width ?: 0,
-            height = height ?: 0
+            height = height ?: 0,
+            keyword = keyword
         )
 }
 

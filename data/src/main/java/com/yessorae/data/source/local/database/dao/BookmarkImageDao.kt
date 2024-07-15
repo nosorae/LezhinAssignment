@@ -16,6 +16,14 @@ interface BookmarkImageDao {
     )
     fun getAllBookmarkImageUrl(): Flow<List<String>>
 
+    @Query(
+        """
+            SELECT * FROM ${BookmarkImageEntity.TABLE_NAME} 
+            WHERE (:keyword = '') OR (${BookmarkImageEntity.KEYWORD} LIKE '%' || :keyword || '%')
+        """
+    )
+    fun getBookmarkImagePagingSource(keyword: String): Flow<List<BookmarkImageEntity>>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(bookmarkImageEntity: BookmarkImageEntity)
 

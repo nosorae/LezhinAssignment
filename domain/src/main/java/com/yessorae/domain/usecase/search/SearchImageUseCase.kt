@@ -1,4 +1,4 @@
-package com.yessorae.domain.usecase
+package com.yessorae.domain.usecase.search
 
 import androidx.paging.PagingData
 import com.yessorae.domain.entity.ImageSearchResult

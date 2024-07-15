@@ -7,7 +7,12 @@ data class ImageUi(
     val imageUrl: String,
     val width: Int,
     val height: Int,
-    val isBookmark: Boolean
+    val isBookmark: Boolean,
+    val clickData: ClickData
+)
+
+data class ClickData(
+    val keyword: String
 )
 
 fun ImageSearchResult.asUiModel(isBookmark: Boolean): ImageUi =
@@ -16,7 +21,8 @@ fun ImageSearchResult.asUiModel(isBookmark: Boolean): ImageUi =
         imageUrl = imageUrl,
         width = width,
         height = height,
-        isBookmark = isBookmark
+        isBookmark = isBookmark,
+        clickData = ClickData(keyword = keyword)
     )
 
 fun ImageUi.asDomainModel(): ImageSearchResult =
@@ -24,5 +30,6 @@ fun ImageUi.asDomainModel(): ImageSearchResult =
         thumbnailUrl = thumbnailUrl,
         imageUrl = imageUrl,
         width = width,
-        height = height
+        height = height,
+        keyword = clickData.keyword
     )
