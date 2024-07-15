@@ -53,15 +53,24 @@ class BookmarkViewModel @Inject constructor(
                 .distinctUntilChanged()
                 .flatMapLatest { keyword ->
                     getBookmarkImageUseCase(keyword = keyword).map { list ->
-                        list.map { imageSearchResult -> imageSearchResult.asUiModel() }
+                        Pair(
+                            keyword,
+                            list.map { imageSearchResult ->
+                                imageSearchResult.asUiModel()
+                            }
+                        )
                     }
                 }
                 .catch {
                     handleError()
                 }
-                .collect { bookmarkUiList ->
+                .collect { (keyword, bookmarkUiList) ->
                     if (bookmarkUiList.isEmpty()) {
-                        _screenState.value = BookmarkScreenState.Empty
+                        _screenState.value = if (keyword.isEmpty())  {
+                            BookmarkScreenState.EmptyBookmarkImage
+                        } else {
+                            BookmarkScreenState.EmptyFilteredBookmarkImage
+                        }
                         return@collect
                     }
 

@@ -131,10 +131,17 @@ fun BookmarkScreen(
                     LezhinAssignmentCircularProgressIndicator(modifier = Modifier.fillMaxSize())
                 }
 
-                is BookmarkScreenState.Empty -> {
+                is BookmarkScreenState.EmptyBookmarkImage -> {
                     LezhinAssignmentNormalTextGuide(
                         modifier = Modifier.fillMaxSize(),
                         title = stringResource(id = R.string.bookmark_empty_message)
+                    )
+                }
+
+                is BookmarkScreenState.EmptyFilteredBookmarkImage -> {
+                    LezhinAssignmentNormalTextGuide(
+                        modifier = Modifier.fillMaxSize(),
+                        title = stringResource(id = R.string.bookmark_filtering_empty_message)
                     )
                 }
 
