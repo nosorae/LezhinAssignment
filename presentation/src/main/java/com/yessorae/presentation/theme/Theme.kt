@@ -35,7 +35,7 @@ val LightColorScheme = lightColorScheme(
     onSurfaceVariant = Black,
     inverseSurface = VeryDarkGray,
     inverseOnSurface = White,
-    outline = LightGrayOutline,
+    outline = LightGrayOutline
 )
 
 val DarkColorScheme = darkColorScheme(
@@ -63,7 +63,7 @@ val DarkColorScheme = darkColorScheme(
     onSurfaceVariant = White,
     inverseSurface = White,
     inverseOnSurface = Black,
-    outline = DarkGrayOutline,
+    outline = DarkGrayOutline
 )
 
 @Composable

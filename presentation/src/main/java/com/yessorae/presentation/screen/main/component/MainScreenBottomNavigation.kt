@@ -1,7 +1,6 @@
 package com.yessorae.presentation.screen.main.component
 
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
@@ -30,7 +29,7 @@ fun MainScreenBottomNavigation(
                 icon = {
                     Icon(
                         imageVector = screen.icon,
-                        contentDescription = title,
+                        contentDescription = title
                     )
                 },
                 label = {
