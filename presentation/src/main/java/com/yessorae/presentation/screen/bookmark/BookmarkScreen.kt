@@ -77,7 +77,7 @@ fun BookmarkScreen(
     Scaffold(
         topBar = {
             LezhinAssignMainTopAppBar(
-                title = stringResource(id = R.string.screen_title_search),
+                title = stringResource(id = R.string.screen_title_bookmark),
                 modifier = Modifier.fillMaxWidth(),
                 actions = {
                     when (screenState) {
