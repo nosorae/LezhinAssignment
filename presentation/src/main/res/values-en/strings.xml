@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="screen_title_search">Search</string>
+    <string name="screen_title_bookmark">Bookmarks</string>
+
+    <!-- search -->
+    <string name="search_empty_message">No search results! 🥶\nPlease try again with a different keyword</string>
+    <string name="search_please_input_keyword">👆 Please enter a keyword to search 👆</string>
+
+    <!-- bookmark -->
+    <string name="bookmark_empty_message">No bookmarked images! 🥶</string>
+    <string name="bookmark_filtering_empty_message">No search results!</string>
+    <string name="bookmark_search_with_keyword">Search with \'%s\'</string>
+    <string name="bookmark_edit">Edit</string>
+    <string name="bookmark_cancel_edit_mode">Cancel</string>
+    <string name="bookmark_delete">Delete</string>
+
+    <!-- common text -->
+    <string name="common_error_message">An unknown error occurred. ⚠️</string>
+    <string name="common_search_text_field_hint">Enter search term</string>
+</resources>
