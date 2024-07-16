@@ -22,12 +22,6 @@ fun MainScreenBottomNavigation(
         screens.forEach { screen ->
             val selected = currentDestination?.hierarchy?.any { it.route == screen.route } == true
 
-            val tint = if (selected) {
-                MaterialTheme.colorScheme.primary
-            } else {
-                MaterialTheme.colorScheme.onBackground
-            }
-
             val title = stringResource(id = screen.title)
 
             NavigationBarItem(
@@ -37,14 +31,10 @@ fun MainScreenBottomNavigation(
                     Icon(
                         imageVector = screen.icon,
                         contentDescription = title,
-                        tint = tint
                     )
                 },
                 label = {
-                    Text(
-                        text = title,
-                        color = tint
-                    )
+                    Text(text = title)
                 }
             )
         }
