@@ -1,7 +1,6 @@
 package com.yessorae.presentation.screen.main.component
 
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
@@ -22,12 +21,6 @@ fun MainScreenBottomNavigation(
         screens.forEach { screen ->
             val selected = currentDestination?.hierarchy?.any { it.route == screen.route } == true
 
-            val tint = if (selected) {
-                MaterialTheme.colorScheme.primary
-            } else {
-                MaterialTheme.colorScheme.onBackground
-            }
-
             val title = stringResource(id = screen.title)
 
             NavigationBarItem(
@@ -36,15 +29,11 @@ fun MainScreenBottomNavigation(
                 icon = {
                     Icon(
                         imageVector = screen.icon,
-                        contentDescription = title,
-                        tint = tint
+                        contentDescription = title
                     )
                 },
                 label = {
-                    Text(
-                        text = title,
-                        color = tint
-                    )
+                    Text(text = title)
                 }
             )
         }
