@@ -1,5 +1,8 @@
 package com.yessorae.presentation.screen.bookmark.model
 
+import androidx.compose.runtime.Stable
+
+@Stable
 sealed interface BookmarkScreenState {
     data object Loading : BookmarkScreenState
 

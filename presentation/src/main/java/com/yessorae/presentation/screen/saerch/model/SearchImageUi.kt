@@ -1,7 +1,9 @@
 package com.yessorae.presentation.screen.saerch.model
 
+import androidx.compose.runtime.Immutable
 import com.yessorae.domain.entity.SearchedImage
 
+@Immutable
 data class ImageUi(
     val thumbnailUrl: String,
     val imageUrl: String,
@@ -11,6 +13,7 @@ data class ImageUi(
     val clickData: ClickData
 )
 
+@Immutable
 data class ClickData(
     val keyword: String
 )
