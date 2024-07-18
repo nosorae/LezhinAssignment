@@ -1,5 +1,6 @@
 package com.yessorae.presentation.common.component
 
+import androidx.compose.foundation.background
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -10,6 +11,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
+import com.yessorae.presentation.theme.LightGray
 
 @Composable
 fun LezhinAssignmentImage(
@@ -27,7 +29,7 @@ fun LezhinAssignmentImage(
             .build(),
         contentDescription = contentDescription,
         contentScale = ContentScale.Crop,
-        modifier = modifier,
+        modifier = modifier.background(color = LightGray),
         onError = {
             if (imageUrl != thumbnailUrl && currentUrl == imageUrl) {
                 currentUrl = thumbnailUrl

@@ -3,13 +3,16 @@ package com.yessorae.presentation.screen.saerch
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridItemSpan
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
@@ -86,6 +89,7 @@ fun SearchScreen(
                 onClickClearKeyword = onClickClearKeyword
             )
 
+
             if (showImageSearchResultUi) {
                 when (pagedImageSearchResult.loadState.refresh) {
                     is LoadState.Loading -> {
@@ -111,6 +115,17 @@ fun SearchScreen(
                                             ImageSearchResultListItem(
                                                 imageUi = item,
                                                 onClickBookmark = { onClickBookmark(item) }
+                                            )
+                                        }
+                                    }
+
+                                    if (pagedImageSearchResult.loadState.append is LoadState.Error) {
+                                        // 버튼으로 만들어서 재시도 로직을 추가할 수 있다.
+                                        item(span = StaggeredGridItemSpan.FullLine) {
+                                            LezhinAssignmentErrorGuide(
+                                                modifier = Modifier
+                                                    .fillMaxWidth()
+                                                    .height(100.dp)
                                             )
                                         }
                                     }
