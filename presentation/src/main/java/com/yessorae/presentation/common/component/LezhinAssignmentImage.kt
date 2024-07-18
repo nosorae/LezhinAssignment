@@ -18,7 +18,7 @@ fun LezhinAssignmentImage(
     modifier: Modifier = Modifier,
     contentDescription: String? = null
 ) {
-    var currentUrl by remember { mutableStateOf(imageUrl) }
+    var currentUrl by remember(imageUrl) { mutableStateOf(imageUrl) }
 
     AsyncImage(
         model = ImageRequest.Builder(LocalContext.current)
