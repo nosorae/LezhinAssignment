@@ -8,7 +8,6 @@ class SaveableMutableStateFlow<T>(
     private val key: String,
     initialValue: T
 ) {
-    // 상속보다는 컴포지션
     private val state: StateFlow<T> = savedStateHandle.getStateFlow(key, initialValue)
     var value: T
         get() = state.value
