@@ -12,7 +12,8 @@ sealed interface BookmarkScreenState {
     data object EmptyFilteredBookmarkImage : BookmarkScreenState
 
     data class Edit(
-        val selectableBookmarkImages: List<SelectableBookmarkImageUi>
+        val selectableBookmarkImages: List<SelectableBookmarkImageUi>,
+        val showDeleteButton: Boolean = false
     ) : BookmarkScreenState
 
     data object Error : BookmarkScreenState

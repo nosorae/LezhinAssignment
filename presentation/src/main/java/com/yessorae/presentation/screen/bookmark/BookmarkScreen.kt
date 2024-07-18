@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.staggeredgrid.items
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -83,16 +84,27 @@ fun BookmarkScreen(
                     when (screenState) {
                         is BookmarkScreenState.Success -> {
                             TextButton(onClick = onClickEditIcon) {
-                                Text(text = stringResource(id = R.string.bookmark_edit))
+                                Text(
+                                    text = stringResource(id = R.string.bookmark_edit),
+                                    color = MaterialTheme.colorScheme.onSurface
+                                )
                             }
                         }
 
                         is BookmarkScreenState.Edit -> {
-                            TextButton(onClick = onClickMultipleDeleteIcon) {
-                                Text(text = stringResource(id = R.string.bookmark_delete))
+                            if (screenState.showDeleteButton) {
+                                TextButton(onClick = onClickMultipleDeleteIcon) {
+                                    Text(
+                                        text = stringResource(id = R.string.bookmark_delete),
+                                        color = MaterialTheme.colorScheme.onSurface
+                                    )
+                                }
                             }
                             TextButton(onClick = onClickCancelEditIcon) {
-                                Text(text = stringResource(id = R.string.bookmark_cancel_edit_mode))
+                                Text(
+                                    text = stringResource(id = R.string.bookmark_cancel_edit_mode),
+                                    color = MaterialTheme.colorScheme.onSurface
+                                )
                             }
                         }
 

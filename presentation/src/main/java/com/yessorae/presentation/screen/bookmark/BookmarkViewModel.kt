@@ -122,7 +122,8 @@ class BookmarkViewModel @Inject constructor(
                 runCatching { selectableBookmarkImages[index] = clickedBookmarkImage }
 
                 _screenState.value = BookmarkScreenState.Edit(
-                    selectableBookmarkImages = selectableBookmarkImages.toList()
+                    selectableBookmarkImages = selectableBookmarkImages.toList(),
+                    showDeleteButton = selectableBookmarkImages.any { it.selected }
                 )
             }
 
