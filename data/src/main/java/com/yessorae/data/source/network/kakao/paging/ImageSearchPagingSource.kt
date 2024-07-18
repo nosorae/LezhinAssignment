@@ -26,7 +26,7 @@ class ImageSearchPagingSource(
                 pageSize = params.loadSize
             )
             val imageDto = response.imageDto
-            val isLastPage = imageDto.size < params.loadSize || response.metaDto.isEnd == true || page > KakaoApiConstants.MAX_PAGE_NUMBER
+            val isLastPage = imageDto.size < params.loadSize || response.metaDto.isEnd == true || page > (KakaoApiConstants.MAX_PAGE_NUMBER - 1)
 
             LoadResult.Page(
                 data = imageDto,
