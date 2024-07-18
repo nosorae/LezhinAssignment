@@ -22,14 +22,6 @@ data class ImageDto(
     val height: Int?,
     @SerialName("width")
     val width: Int?
-//    @SerialName("collection")
-//    val collection: String? = null,
-//    @SerialName("datetime")
-//    val datetime: String? = null,
-//    @SerialName("display_sitename")
-//    val displaySiteName: String? = null,
-//    @SerialName("doc_url")
-//    val docUrl: String? = null,
 ) {
     fun asDomainModel(keyword: String) =
         SearchedImage(

@@ -12,9 +12,11 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.LoadState
+import androidx.paging.PagingData
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.yessorae.presentation.R
@@ -24,10 +26,14 @@ import com.yessorae.presentation.common.component.LezhinAssignmentErrorGuide
 import com.yessorae.presentation.common.component.LezhinAssignmentNormalTextGuide
 import com.yessorae.presentation.common.component.LezhinAssignmentTextField
 import com.yessorae.presentation.common.component.LezhinLazyVerticalStaggeredGrid
+import com.yessorae.presentation.common.util.DevicePreviews
+import com.yessorae.presentation.common.util.ThemePreviews
 import com.yessorae.presentation.screen.saerch.component.ImageSearchResultListItem
 import com.yessorae.presentation.screen.saerch.model.ImageUi
 import com.yessorae.presentation.screen.saerch.model.SearchScreenUserAction
 import com.yessorae.presentation.theme.Dimen
+import com.yessorae.presentation.theme.LezhinAssignmentTheme
+import kotlinx.coroutines.flow.flowOf
 
 @Composable
 fun SearchRoute(viewModel: SearchViewModel = hiltViewModel()) {
@@ -89,7 +95,6 @@ fun SearchScreen(
                 onClickClearKeyword = onClickClearKeyword
             )
 
-
             if (showImageSearchResultUi) {
                 when (pagedImageSearchResult.loadState.refresh) {
                     is LoadState.Loading -> {
@@ -141,5 +146,24 @@ fun SearchScreen(
                 )
             }
         }
+    }
+}
+
+@ThemePreviews
+@DevicePreviews
+@Preview
+@Composable
+fun SearchScreenPreview() {
+    val lazyPagingItems = flowOf(PagingData.empty<ImageUi>()).collectAsLazyPagingItems()
+
+    LezhinAssignmentTheme {
+        SearchScreen(
+            pagedImageSearchResult = lazyPagingItems,
+            keyword = "Sample Keyword",
+            showImageSearchResultUi = true,
+            onKeywordChanged = {},
+            onClickClearKeyword = {},
+            onClickBookmark = {}
+        )
     }
 }

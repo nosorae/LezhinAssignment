@@ -14,6 +14,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.yessorae.presentation.R
 import com.yessorae.presentation.common.component.LezhinAssignMainTopAppBar
@@ -22,6 +23,8 @@ import com.yessorae.presentation.common.component.LezhinAssignmentErrorGuide
 import com.yessorae.presentation.common.component.LezhinAssignmentNormalTextGuide
 import com.yessorae.presentation.common.component.LezhinAssignmentTextField
 import com.yessorae.presentation.common.component.LezhinLazyVerticalStaggeredGrid
+import com.yessorae.presentation.common.util.DevicePreviews
+import com.yessorae.presentation.common.util.ThemePreviews
 import com.yessorae.presentation.screen.bookmark.component.BookmarkListItem
 import com.yessorae.presentation.screen.bookmark.component.SelectableBookmarkListItem
 import com.yessorae.presentation.screen.bookmark.model.BookmarkImageUi
@@ -189,4 +192,37 @@ fun BookmarkScreen(
             }
         }
     }
+}
+
+@ThemePreviews
+@DevicePreviews
+@Preview
+@Composable
+fun BookmarkScreenPreview() {
+    val sampleBookmarkImageUiList =
+        (1..30).map { index ->
+            BookmarkImageUi(
+                imageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcrrwZQarWGinKPcFJf4OUumBrwW1CMkhV8Q&s",
+                thumbnailUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcrrwZQarWGinKPcFJf4OUumBrwW1CMkhV8Q&s",
+                width = 200,
+                height = 300 * index / 3,
+                keyword = "Sample"
+            )
+        }
+
+    val sampleScreenState = BookmarkScreenState.Success(
+        bookmarkImages = sampleBookmarkImageUiList
+    )
+
+    BookmarkScreen(
+        screenState = sampleScreenState,
+        keyword = "Sample Keyword",
+        onKeywordChanged = {},
+        onClickClearKeywordIcon = {},
+        onClickSingleDeleteIcon = {},
+        onClickSelectableBookmarkImageUi = {},
+        onClickEditIcon = {},
+        onClickMultipleDeleteIcon = {},
+        onClickCancelEditIcon = {}
+    )
 }

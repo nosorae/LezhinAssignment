@@ -13,9 +13,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import com.yessorae.presentation.R
 import com.yessorae.presentation.common.component.LezhinAssignmentImage
+import com.yessorae.presentation.common.util.DevicePreviews
+import com.yessorae.presentation.common.util.ThemePreviews
+import com.yessorae.presentation.screen.saerch.model.ClickData
 import com.yessorae.presentation.screen.saerch.model.ImageUi
+import com.yessorae.presentation.theme.LezhinAssignmentTheme
 
 @Composable
 fun ImageSearchResultListItem(
@@ -47,5 +52,27 @@ fun ImageSearchResultListItem(
                 tint = if (imageUi.isBookmark) Color.Yellow else Color.LightGray.copy(alpha = 0.9f)
             )
         }
+    }
+}
+
+@ThemePreviews
+@DevicePreviews
+@Preview
+@Composable
+fun ImageSearchResultListItemPreview() {
+    val sampleImageUi = ImageUi(
+        imageUrl = "https://example.com/image.jpg",
+        thumbnailUrl = "https://example.com/thumbnail.jpg",
+        width = 200,
+        height = 300,
+        isBookmark = true,
+        clickData = ClickData(keyword = "")
+    )
+
+    LezhinAssignmentTheme {
+        ImageSearchResultListItem(
+            imageUi = sampleImageUi,
+            onClickBookmark = {}
+        )
     }
 }

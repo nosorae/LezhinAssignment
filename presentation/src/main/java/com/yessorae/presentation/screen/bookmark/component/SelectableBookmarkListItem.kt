@@ -14,10 +14,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.yessorae.presentation.R
 import com.yessorae.presentation.common.component.LezhinAssignmentImage
+import com.yessorae.presentation.common.util.DevicePreviews
+import com.yessorae.presentation.common.util.ThemePreviews
+import com.yessorae.presentation.screen.bookmark.model.BookmarkImageUi
 import com.yessorae.presentation.screen.bookmark.model.SelectableBookmarkImageUi
+import com.yessorae.presentation.theme.LezhinAssignmentTheme
 
 @Composable
 fun SelectableBookmarkListItem(
@@ -50,5 +55,30 @@ fun SelectableBookmarkListItem(
                 modifier = Modifier.size(48.dp)
             )
         }
+    }
+}
+
+@ThemePreviews
+@DevicePreviews
+@Preview
+@Composable
+fun SelectableBookmarkListItemPreview() {
+    val sampleBookmarkImageUi = BookmarkImageUi(
+        imageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcrrwZQarWGinKPcFJf4OUumBrwW1CMkhV8Q&s",
+        thumbnailUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcrrwZQarWGinKPcFJf4OUumBrwW1CMkhV8Q&s",
+        width = 200,
+        height = 300,
+        keyword = "Sample"
+    )
+    val sampleSelectableBookmarkImageUi = SelectableBookmarkImageUi(
+        bookmarkImageUi = sampleBookmarkImageUi,
+        selected = true
+    )
+
+    LezhinAssignmentTheme {
+        SelectableBookmarkListItem(
+            selectableBookmarkImageUi = sampleSelectableBookmarkImageUi,
+            onClick = {}
+        )
     }
 }

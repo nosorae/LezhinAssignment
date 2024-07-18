@@ -11,7 +11,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.tooling.preview.Preview
 import com.yessorae.presentation.R
+import com.yessorae.presentation.common.util.DevicePreviews
+import com.yessorae.presentation.common.util.ThemePreviews
+import com.yessorae.presentation.theme.LezhinAssignmentTheme
 
 @Composable
 fun LezhinAssignmentTextField(
@@ -39,4 +43,19 @@ fun LezhinAssignmentTextField(
             }
         }
     )
+}
+
+@ThemePreviews
+@DevicePreviews
+@Preview
+@Composable
+fun LezhinAssignmentTextFieldPreview() {
+    LezhinAssignmentTheme {
+        LezhinAssignmentTextField(
+            hint = "Enter keyword",
+            keyword = "Sample",
+            onKeywordChanged = {},
+            onClickClearKeyword = {}
+        )
+    }
 }
