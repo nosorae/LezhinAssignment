@@ -1,6 +1,6 @@
 package com.yessorae.presentation.screen.bookmark.model
 
-import com.yessorae.domain.entity.ImageSearchResult
+import com.yessorae.domain.entity.SearchedImage
 
 data class BookmarkImageUi(
     val thumbnailUrl: String,
@@ -21,7 +21,7 @@ fun BookmarkImageUi.asSelectableUiModel(selected: Boolean): SelectableBookmarkIm
         selected = selected
     )
 
-fun ImageSearchResult.asUiModel(): BookmarkImageUi =
+fun SearchedImage.asUiModel(): BookmarkImageUi =
     BookmarkImageUi(
         thumbnailUrl = thumbnailUrl,
         imageUrl = imageUrl,

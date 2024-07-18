@@ -8,7 +8,7 @@ import com.yessorae.data.common.Constants
 import com.yessorae.data.di.Dispatcher
 import com.yessorae.data.di.LezhinAssignmentDispatcher
 import com.yessorae.data.source.network.ImageSearchNetworkDataSource
-import com.yessorae.domain.entity.ImageSearchResult
+import com.yessorae.domain.entity.SearchedImage
 import com.yessorae.domain.respository.ImageSearchResultRepository
 import javax.inject.Inject
 import kotlinx.coroutines.CoroutineDispatcher
@@ -21,7 +21,7 @@ class ImageSearchResultRepositoryImpl @Inject constructor(
     @Dispatcher(LezhinAssignmentDispatcher.IO)
     private val dispatcher: CoroutineDispatcher
 ) : ImageSearchResultRepository {
-    override fun getPagedImageSearchResult(keyword: String): Flow<PagingData<ImageSearchResult>> {
+    override fun getPagedImageSearchResult(keyword: String): Flow<PagingData<SearchedImage>> {
         return Pager(
             config = PagingConfig(
                 pageSize = Constants.DEFAULT_PAGE_SIZE,

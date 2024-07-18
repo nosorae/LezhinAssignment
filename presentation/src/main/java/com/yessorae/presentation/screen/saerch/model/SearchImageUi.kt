@@ -1,6 +1,6 @@
 package com.yessorae.presentation.screen.saerch.model
 
-import com.yessorae.domain.entity.ImageSearchResult
+import com.yessorae.domain.entity.SearchedImage
 
 data class ImageUi(
     val thumbnailUrl: String,
@@ -15,7 +15,7 @@ data class ClickData(
     val keyword: String
 )
 
-fun ImageSearchResult.asUiModel(isBookmark: Boolean): ImageUi =
+fun SearchedImage.asUiModel(isBookmark: Boolean): ImageUi =
     ImageUi(
         thumbnailUrl = thumbnailUrl,
         imageUrl = imageUrl,
@@ -25,8 +25,8 @@ fun ImageSearchResult.asUiModel(isBookmark: Boolean): ImageUi =
         clickData = ClickData(keyword = keyword)
     )
 
-fun ImageUi.asDomainModel(): ImageSearchResult =
-    ImageSearchResult(
+fun ImageUi.asDomainModel(): SearchedImage =
+    SearchedImage(
         thumbnailUrl = thumbnailUrl,
         imageUrl = imageUrl,
         width = width,
