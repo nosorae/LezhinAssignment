@@ -7,8 +7,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
+import com.yessorae.presentation.common.util.DevicePreviews
+import com.yessorae.presentation.common.util.ThemePreviews
 import com.yessorae.presentation.screen.main.model.screens
 
 @Composable
@@ -38,4 +41,15 @@ fun MainScreenBottomNavigation(
             )
         }
     }
+}
+
+@ThemePreviews
+@DevicePreviews
+@Preview
+@Composable
+fun MainScreenBottomNavigationPreview() {
+    MainScreenBottomNavigation(
+        currentDestination = null,
+        onNavigateTo = {}
+    )
 }

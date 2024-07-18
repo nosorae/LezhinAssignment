@@ -1,6 +1,6 @@
 package com.yessorae.data.source.network.kakao.model
 
-import com.yessorae.domain.entity.ImageSearchResult
+import com.yessorae.domain.entity.SearchedImage
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -22,17 +22,9 @@ data class ImageDto(
     val height: Int?,
     @SerialName("width")
     val width: Int?
-//    @SerialName("collection")
-//    val collection: String? = null,
-//    @SerialName("datetime")
-//    val datetime: String? = null,
-//    @SerialName("display_sitename")
-//    val displaySiteName: String? = null,
-//    @SerialName("doc_url")
-//    val docUrl: String? = null,
 ) {
     fun asDomainModel(keyword: String) =
-        ImageSearchResult(
+        SearchedImage(
             thumbnailUrl = thumbnailUrl ?: "",
             imageUrl = imageUrl ?: "",
             width = width ?: 0,

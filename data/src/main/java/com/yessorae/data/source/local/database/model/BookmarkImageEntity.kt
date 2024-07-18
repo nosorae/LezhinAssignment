@@ -3,7 +3,7 @@ package com.yessorae.data.source.local.database.model
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.yessorae.domain.entity.ImageSearchResult
+import com.yessorae.domain.entity.SearchedImage
 
 @Entity(tableName = BookmarkImageEntity.TABLE_NAME)
 data class BookmarkImageEntity(
@@ -30,7 +30,7 @@ data class BookmarkImageEntity(
 }
 
 fun BookmarkImageEntity.asDomainModel() =
-    ImageSearchResult(
+    SearchedImage(
         thumbnailUrl = thumbnailUrl,
         imageUrl = imageUrl,
         width = width,
@@ -38,7 +38,7 @@ fun BookmarkImageEntity.asDomainModel() =
         keyword = keyword
     )
 
-fun ImageSearchResult.asEntity() =
+fun SearchedImage.asEntity() =
     BookmarkImageEntity(
         thumbnailUrl = thumbnailUrl,
         imageUrl = imageUrl,

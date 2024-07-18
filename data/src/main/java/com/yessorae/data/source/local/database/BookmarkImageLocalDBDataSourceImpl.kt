@@ -1,10 +1,9 @@
 package com.yessorae.data.source.local.database
 
-import androidx.paging.map
 import com.yessorae.data.source.local.database.dao.BookmarkImageDao
 import com.yessorae.data.source.local.database.model.asDomainModel
 import com.yessorae.data.source.local.database.model.asEntity
-import com.yessorae.domain.entity.ImageSearchResult
+import com.yessorae.domain.entity.SearchedImage
 import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -16,13 +15,13 @@ class BookmarkImageLocalDBDataSourceImpl @Inject constructor(
         return bookmarkImageDao.getAllBookmarkImageUrl().map { it.toSet() }
     }
 
-    override fun getPagedBookmarkImage(keyword: String): Flow<List<ImageSearchResult>> {
+    override fun getPagedBookmarkImage(keyword: String): Flow<List<SearchedImage>> {
         return bookmarkImageDao.getBookmarkImagePagingSource(keyword = keyword).map { list ->
             list.map { entity -> entity.asDomainModel() }
         }
     }
 
-    override suspend fun insertBookmarkImage(bookmarkImage: ImageSearchResult) {
+    override suspend fun insertBookmarkImage(bookmarkImage: SearchedImage) {
         bookmarkImageDao.insert(bookmarkImage.asEntity())
     }
 

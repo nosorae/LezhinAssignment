@@ -1,7 +1,9 @@
 package com.yessorae.presentation.screen.bookmark.model
 
-import com.yessorae.domain.entity.ImageSearchResult
+import androidx.compose.runtime.Immutable
+import com.yessorae.domain.entity.SearchedImage
 
+@Immutable
 data class BookmarkImageUi(
     val thumbnailUrl: String,
     val imageUrl: String,
@@ -10,6 +12,7 @@ data class BookmarkImageUi(
     val keyword: String
 )
 
+@Immutable
 data class SelectableBookmarkImageUi(
     val bookmarkImageUi: BookmarkImageUi,
     val selected: Boolean
@@ -21,7 +24,7 @@ fun BookmarkImageUi.asSelectableUiModel(selected: Boolean): SelectableBookmarkIm
         selected = selected
     )
 
-fun ImageSearchResult.asUiModel(): BookmarkImageUi =
+fun SearchedImage.asUiModel(): BookmarkImageUi =
     BookmarkImageUi(
         thumbnailUrl = thumbnailUrl,
         imageUrl = imageUrl,

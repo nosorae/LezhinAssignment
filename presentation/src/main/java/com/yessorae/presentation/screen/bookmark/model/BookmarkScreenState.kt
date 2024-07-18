@@ -1,5 +1,8 @@
 package com.yessorae.presentation.screen.bookmark.model
 
+import androidx.compose.runtime.Stable
+
+@Stable
 sealed interface BookmarkScreenState {
     data object Loading : BookmarkScreenState
 
@@ -12,7 +15,8 @@ sealed interface BookmarkScreenState {
     data object EmptyFilteredBookmarkImage : BookmarkScreenState
 
     data class Edit(
-        val selectableBookmarkImages: List<SelectableBookmarkImageUi>
+        val selectableBookmarkImages: List<SelectableBookmarkImageUi>,
+        val showDeleteButton: Boolean = false
     ) : BookmarkScreenState
 
     data object Error : BookmarkScreenState

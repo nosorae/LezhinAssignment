@@ -3,15 +3,20 @@ package com.yessorae.presentation.screen.saerch
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridItemSpan
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.LoadState
+import androidx.paging.PagingData
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.yessorae.presentation.R
@@ -21,10 +26,14 @@ import com.yessorae.presentation.common.component.LezhinAssignmentErrorGuide
 import com.yessorae.presentation.common.component.LezhinAssignmentNormalTextGuide
 import com.yessorae.presentation.common.component.LezhinAssignmentTextField
 import com.yessorae.presentation.common.component.LezhinLazyVerticalStaggeredGrid
+import com.yessorae.presentation.common.util.DevicePreviews
+import com.yessorae.presentation.common.util.ThemePreviews
 import com.yessorae.presentation.screen.saerch.component.ImageSearchResultListItem
 import com.yessorae.presentation.screen.saerch.model.ImageUi
 import com.yessorae.presentation.screen.saerch.model.SearchScreenUserAction
 import com.yessorae.presentation.theme.Dimen
+import com.yessorae.presentation.theme.LezhinAssignmentTheme
+import kotlinx.coroutines.flow.flowOf
 
 @Composable
 fun SearchRoute(viewModel: SearchViewModel = hiltViewModel()) {
@@ -114,6 +123,17 @@ fun SearchScreen(
                                             )
                                         }
                                     }
+
+                                    if (pagedImageSearchResult.loadState.append is LoadState.Error) {
+                                        // 버튼으로 만들어서 재시도 로직을 추가할 수 있다.
+                                        item(span = StaggeredGridItemSpan.FullLine) {
+                                            LezhinAssignmentErrorGuide(
+                                                modifier = Modifier
+                                                    .fillMaxWidth()
+                                                    .height(100.dp)
+                                            )
+                                        }
+                                    }
                                 }
                             )
                         }
@@ -126,5 +146,24 @@ fun SearchScreen(
                 )
             }
         }
+    }
+}
+
+@ThemePreviews
+@DevicePreviews
+@Preview
+@Composable
+fun SearchScreenPreview() {
+    val lazyPagingItems = flowOf(PagingData.empty<ImageUi>()).collectAsLazyPagingItems()
+
+    LezhinAssignmentTheme {
+        SearchScreen(
+            pagedImageSearchResult = lazyPagingItems,
+            keyword = "Sample Keyword",
+            showImageSearchResultUi = true,
+            onKeywordChanged = {},
+            onClickClearKeyword = {},
+            onClickBookmark = {}
+        )
     }
 }
