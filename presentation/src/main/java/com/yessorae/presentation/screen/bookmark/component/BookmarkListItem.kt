@@ -14,14 +14,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImage
-import coil.request.ImageRequest
-import coil.size.Scale
 import com.yessorae.presentation.R
+import com.yessorae.presentation.common.component.LezhinAssignmentImage
 import com.yessorae.presentation.screen.bookmark.model.BookmarkImageUi
 
 @Composable
@@ -30,7 +26,6 @@ fun BookmarkListItem(
     bookmarkImageUi: BookmarkImageUi,
     onClickDelete: () -> Unit
 ) {
-    val context = LocalContext.current
     val aspectRatio = bookmarkImageUi.width.toFloat() / bookmarkImageUi.height.toFloat()
 
     Column(
@@ -39,14 +34,9 @@ fun BookmarkListItem(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Box {
-            AsyncImage(
-                model = ImageRequest.Builder(context)
-                    .data(bookmarkImageUi.thumbnailUrl)
-                    .crossfade(true)
-                    .scale(Scale.FILL)
-                    .build(),
-                contentDescription = "Image",
-                contentScale = ContentScale.Crop,
+            LezhinAssignmentImage(
+                imageUrl = bookmarkImageUi.imageUrl,
+                thumbnailUrl = bookmarkImageUi.thumbnailUrl,
                 modifier = Modifier
                     .fillMaxWidth()
                     .aspectRatio(aspectRatio)

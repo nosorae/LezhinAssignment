@@ -12,11 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
-import coil.compose.AsyncImage
-import coil.request.ImageRequest
-import coil.size.Scale
+import com.yessorae.presentation.common.component.LezhinAssignmentImage
 import com.yessorae.presentation.screen.saerch.model.ImageUi
 
 @Composable
@@ -25,7 +21,6 @@ fun ImageSearchResultListItem(
     imageUi: ImageUi,
     onClickBookmark: () -> Unit
 ) {
-    val context = LocalContext.current
     val aspectRatio = imageUi.width.toFloat() / imageUi.height.toFloat()
 
     Box(
@@ -33,14 +28,9 @@ fun ImageSearchResultListItem(
             .fillMaxWidth()
             .aspectRatio(aspectRatio)
     ) {
-        AsyncImage(
-            model = ImageRequest.Builder(context)
-                .data(imageUi.thumbnailUrl)
-                .crossfade(true)
-                .scale(Scale.FILL)
-                .build(),
-            contentDescription = "Image",
-            contentScale = ContentScale.Crop,
+        LezhinAssignmentImage(
+            imageUrl = imageUi.imageUrl,
+            thumbnailUrl = imageUi.thumbnailUrl,
             modifier = Modifier.fillMaxSize()
         )
 

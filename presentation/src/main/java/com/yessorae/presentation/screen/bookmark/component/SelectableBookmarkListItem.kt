@@ -8,11 +8,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
-import coil.compose.AsyncImage
-import coil.request.ImageRequest
-import coil.size.Scale
+import com.yessorae.presentation.common.component.LezhinAssignmentImage
 import com.yessorae.presentation.screen.bookmark.model.SelectableBookmarkImageUi
 
 @Composable
@@ -21,7 +17,6 @@ fun SelectableBookmarkListItem(
     selectableBookmarkImageUi: SelectableBookmarkImageUi,
     onClick: () -> Unit
 ) {
-    val context = LocalContext.current
     val bookmarkImageUi = selectableBookmarkImageUi.bookmarkImageUi
     val aspectRatio = bookmarkImageUi.width.toFloat() / bookmarkImageUi.height.toFloat()
 
@@ -32,14 +27,9 @@ fun SelectableBookmarkListItem(
             .clickable(onClick = onClick)
             .alpha(if (selectableBookmarkImageUi.selected) 0.5f else 1f)
     ) {
-        AsyncImage(
-            model = ImageRequest.Builder(context)
-                .data(bookmarkImageUi.thumbnailUrl)
-                .crossfade(true)
-                .scale(Scale.FILL)
-                .build(),
-            contentDescription = "Image",
-            contentScale = ContentScale.Crop,
+        LezhinAssignmentImage(
+            imageUrl = bookmarkImageUi.imageUrl,
+            thumbnailUrl = bookmarkImageUi.thumbnailUrl,
             modifier = Modifier.fillMaxSize()
         )
     }
