@@ -8,6 +8,8 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import com.yessorae.presentation.R
 
 @Composable
 fun LezhinAssignmentTextField(
@@ -28,7 +30,7 @@ fun LezhinAssignmentTextField(
                 IconButton(onClick = onClickClearKeyword) {
                     Icon(
                         imageVector = Icons.Default.Close,
-                        contentDescription = null
+                        contentDescription = stringResource(id = R.string.content_description_keyword_text_field)
                     )
                 }
             }

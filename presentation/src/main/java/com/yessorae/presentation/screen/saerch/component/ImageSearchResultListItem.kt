@@ -12,6 +12,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
+import com.yessorae.presentation.R
 import com.yessorae.presentation.common.component.LezhinAssignmentImage
 import com.yessorae.presentation.screen.saerch.model.ImageUi
 
@@ -31,7 +33,8 @@ fun ImageSearchResultListItem(
         LezhinAssignmentImage(
             imageUrl = imageUi.imageUrl,
             thumbnailUrl = imageUi.thumbnailUrl,
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier.fillMaxSize(),
+            contentDescription = stringResource(id = R.string.content_description_image_search_result)
         )
 
         IconButton(
@@ -40,7 +43,7 @@ fun ImageSearchResultListItem(
         ) {
             Icon(
                 imageVector = Icons.Filled.Star,
-                contentDescription = "Bookmark",
+                contentDescription = stringResource(id = R.string.content_description_add_bookmark),
                 tint = if (imageUi.isBookmark) Color.Yellow else Color.LightGray.copy(alpha = 0.9f)
             )
         }

@@ -8,6 +8,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.res.stringResource
+import com.yessorae.presentation.R
 import com.yessorae.presentation.common.component.LezhinAssignmentImage
 import com.yessorae.presentation.screen.bookmark.model.SelectableBookmarkImageUi
 
@@ -30,7 +32,8 @@ fun SelectableBookmarkListItem(
         LezhinAssignmentImage(
             imageUrl = bookmarkImageUi.imageUrl,
             thumbnailUrl = bookmarkImageUi.thumbnailUrl,
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier.fillMaxSize(),
+            contentDescription = stringResource(id = R.string.content_description_bookmark_search_result)
         )
     }
 }

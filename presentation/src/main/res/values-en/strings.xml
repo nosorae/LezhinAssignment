@@ -18,4 +18,12 @@
     <!-- common text -->
     <string name="common_error_message">An unknown error occurred. ⚠️</string>
     <string name="common_search_text_field_hint">Enter search term</string>
+
+    <!-- content description -->
+    <string name="content_description_keyword_text_field">Enter search keyword</string>
+    <string name="content_description_image_search_result">Image search result</string>
+    <string name="content_description_bookmark_search_result">Bookmark search result</string>
+    <string name="content_description_bookmark_multi_select">Select bookmarks</string>
+    <string name="content_description_delete_bookmark">Delete bookmark</string>
+    <string name="content_description_add_bookmark">Add bookmark</string>
 </resources>

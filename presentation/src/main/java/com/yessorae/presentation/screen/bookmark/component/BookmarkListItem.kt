@@ -39,7 +39,8 @@ fun BookmarkListItem(
                 thumbnailUrl = bookmarkImageUi.thumbnailUrl,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .aspectRatio(aspectRatio)
+                    .aspectRatio(aspectRatio),
+                contentDescription = stringResource(id = R.string.content_description_bookmark_search_result)
             )
 
             IconButton(
@@ -48,7 +49,7 @@ fun BookmarkListItem(
             ) {
                 Icon(
                     imageVector = Icons.Default.Close,
-                    contentDescription = "Delete"
+                    contentDescription = stringResource(id = R.string.content_description_delete_bookmark)
                 )
             }
         }
