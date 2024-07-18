@@ -5,8 +5,8 @@ import com.yessorae.data.di.LezhinAssignmentDispatcher
 import com.yessorae.data.source.local.database.BookmarkImageLocalDBDataSource
 import com.yessorae.domain.entity.ImageSearchResult
 import com.yessorae.domain.respository.BookmarkImageRepository
-import kotlinx.coroutines.CoroutineDispatcher
 import javax.inject.Inject
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.withContext
@@ -24,11 +24,13 @@ class BookmarkImageRepositoryImpl @Inject constructor(
         return lezhinAssignmentLocalDBDataSource.getPagedBookmarkImage(keyword = keyword).flowOn(dispatcher)
     }
 
-    override suspend fun insertBookmarkImage(imageSearchResult: ImageSearchResult) = withContext(dispatcher) {
-        lezhinAssignmentLocalDBDataSource.insertBookmarkImage(imageSearchResult)
-    }
+    override suspend fun insertBookmarkImage(imageSearchResult: ImageSearchResult) =
+        withContext(dispatcher) {
+            lezhinAssignmentLocalDBDataSource.insertBookmarkImage(imageSearchResult)
+        }
 
-    override suspend fun deleteBookmarkImage(imageUrls: List<String>) = withContext(dispatcher) {
-        lezhinAssignmentLocalDBDataSource.deleteBookmarkImage(imageUrls = imageUrls)
-    }
+    override suspend fun deleteBookmarkImage(imageUrls: List<String>) =
+        withContext(dispatcher) {
+            lezhinAssignmentLocalDBDataSource.deleteBookmarkImage(imageUrls = imageUrls)
+        }
 }

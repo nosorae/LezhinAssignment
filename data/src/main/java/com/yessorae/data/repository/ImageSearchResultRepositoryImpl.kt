@@ -10,8 +10,8 @@ import com.yessorae.data.di.LezhinAssignmentDispatcher
 import com.yessorae.data.source.network.ImageSearchNetworkDataSource
 import com.yessorae.domain.entity.ImageSearchResult
 import com.yessorae.domain.respository.ImageSearchResultRepository
-import kotlinx.coroutines.CoroutineDispatcher
 import javax.inject.Inject
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
