@@ -30,7 +30,7 @@ object RetrofitModule {
                     val newRequest = originalRequest.newBuilder()
                         .header(
                             name = "Authorization",
-                            value = "${KakaoApiConstants.HEADER_KEY} 0062f18a02ed3a27e51fdca43de6cb1f"
+                            value = "${KakaoApiConstants.HEADER_KEY} ${BuildConfig.API_KEY}"
                         )
                         .build()
                     chain.proceed(newRequest)
