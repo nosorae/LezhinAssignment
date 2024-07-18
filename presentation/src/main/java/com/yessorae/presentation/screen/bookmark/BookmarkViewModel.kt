@@ -52,7 +52,6 @@ class BookmarkViewModel @Inject constructor(
         viewModelScope.launch {
             searchKeyword
                 .debounce(SearchViewModel.DEBOUNCE_TIME_MILLIS)
-                .distinctUntilChanged()
                 .flatMapLatest { keyword ->
                     getBookmarkImageUseCase(keyword = keyword).map { list ->
                         Pair(

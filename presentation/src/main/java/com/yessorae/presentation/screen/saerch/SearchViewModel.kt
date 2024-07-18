@@ -60,7 +60,6 @@ class SearchViewModel @Inject constructor(
             searchKeyword
                 .debounce(DEBOUNCE_TIME_MILLIS)
                 .filter { it.isNotBlank() }
-                .distinctUntilChanged()
                 .flatMapLatest { keyword ->
                     searchImageUseCase(keyword)
                 }
