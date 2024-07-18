@@ -55,22 +55,25 @@ class SearchViewModel @Inject constructor(
         )
 
     @OptIn(FlowPreview::class, ExperimentalCoroutinesApi::class)
-    val pagedImageUiFlow: Flow<PagingData<ImageUi>> = searchKeyword
-        .debounce(DEBOUNCE_TIME_MILLIS)
-        .filter { it.isNotBlank() }
-        .distinctUntilChanged()
-        .flatMapLatest { keyword ->
-            combine(
-                searchImageUseCase(keyword).cachedIn(viewModelScope),
-                getBookmarkUrlSetUseCase()
-            ) { pagingData, bookmarkImageUrlSet ->
-                pagingData.map { imageSearchResult ->
-                    imageSearchResult.asUiModel(
-                        isBookmark = bookmarkImageUrlSet.contains(imageSearchResult.imageUrl)
-                    )
+    val pagedImageUiFlow: Flow<PagingData<ImageUi>> =
+        combine(
+            searchKeyword
+                .debounce(DEBOUNCE_TIME_MILLIS)
+                .filter { it.isNotBlank() }
+                .distinctUntilChanged()
+                .flatMapLatest { keyword ->
+                    searchImageUseCase(keyword)
                 }
+                .cachedIn(viewModelScope),
+            getBookmarkUrlSetUseCase()
+        ) { pagingData, bookmarkImageUrlSet ->
+            pagingData.map { imageSearchResult ->
+                imageSearchResult.asUiModel(
+                    isBookmark = bookmarkImageUrlSet.contains(imageSearchResult.imageUrl)
+                )
             }
         }
+
 
     fun handleUserAction(userAction: SearchScreenUserAction) =
         viewModelScope.launch {
