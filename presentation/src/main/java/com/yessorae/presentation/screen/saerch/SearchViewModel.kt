@@ -16,6 +16,7 @@ import com.yessorae.presentation.screen.saerch.model.SearchScreenUserAction
 import com.yessorae.presentation.screen.saerch.model.asDomainModel
 import com.yessorae.presentation.screen.saerch.model.asUiModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.delay
@@ -29,7 +30,6 @@ import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 @HiltViewModel
 class SearchViewModel @Inject constructor(
@@ -73,7 +73,6 @@ class SearchViewModel @Inject constructor(
                 )
             }
         }
-
 
     fun handleUserAction(userAction: SearchScreenUserAction) =
         viewModelScope.launch {
