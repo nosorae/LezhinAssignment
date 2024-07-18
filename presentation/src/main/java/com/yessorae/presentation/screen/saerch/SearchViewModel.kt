@@ -1,5 +1,6 @@
 package com.yessorae.presentation.screen.saerch
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
@@ -9,19 +10,17 @@ import com.yessorae.domain.usecase.common.DeleteBookmarkImageUseCase
 import com.yessorae.domain.usecase.search.AddBookmarkImageUseCase
 import com.yessorae.domain.usecase.search.GetBookmarkUrlSetUseCase
 import com.yessorae.domain.usecase.search.SearchImageUseCase
+import com.yessorae.presentation.common.util.createSaveableMutableStateFlow
 import com.yessorae.presentation.screen.saerch.model.ImageUi
 import com.yessorae.presentation.screen.saerch.model.SearchScreenUserAction
 import com.yessorae.presentation.screen.saerch.model.asDomainModel
 import com.yessorae.presentation.screen.saerch.model.asUiModel
 import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -30,18 +29,20 @@ import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @HiltViewModel
 class SearchViewModel @Inject constructor(
     private val searchImageUseCase: SearchImageUseCase,
     private val addBookmarkImageUseCase: AddBookmarkImageUseCase,
     private val deleteBookmarkImageUseCase: DeleteBookmarkImageUseCase,
-    private val getBookmarkUrlSetUseCase: GetBookmarkUrlSetUseCase
+    private val getBookmarkUrlSetUseCase: GetBookmarkUrlSetUseCase,
+    state: SavedStateHandle
 ) : ViewModel() {
-    private val _searchKeyword = MutableStateFlow("")
+    private val _searchKeyword = state.createSaveableMutableStateFlow("searchKeyword", "")
     val searchKeyword = _searchKeyword.asStateFlow()
 
-    val showImageSearchResultUi = _searchKeyword
+    val showImageSearchResultUi = searchKeyword
         .map { keyword ->
             val isNotEmpty = keyword.isNotEmpty()
             if (isNotEmpty) delay(DEBOUNCE_TIME_MILLIS)

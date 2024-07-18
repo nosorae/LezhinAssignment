@@ -1,9 +1,11 @@
 package com.yessorae.presentation.screen.bookmark
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.yessorae.domain.usecase.bookmark.GetBookmarkImageUseCase
 import com.yessorae.domain.usecase.common.DeleteBookmarkImageUseCase
+import com.yessorae.presentation.common.util.createSaveableMutableStateFlow
 import com.yessorae.presentation.screen.bookmark.model.BookmarkScreenState
 import com.yessorae.presentation.screen.bookmark.model.BookmarkScreenUserAction
 import com.yessorae.presentation.screen.bookmark.model.asSelectableUiModel
@@ -15,7 +17,6 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -28,9 +29,10 @@ import kotlinx.coroutines.launch
 @HiltViewModel
 class BookmarkViewModel @Inject constructor(
     private val getBookmarkImageUseCase: GetBookmarkImageUseCase,
-    private val deleteBookmarkImageUseCase: DeleteBookmarkImageUseCase
+    private val deleteBookmarkImageUseCase: DeleteBookmarkImageUseCase,
+    state: SavedStateHandle
 ) : ViewModel() {
-    private val _searchKeyword = MutableStateFlow("")
+    private val _searchKeyword = state.createSaveableMutableStateFlow("searchKeyword", "")
     val searchKeyword = _searchKeyword.asStateFlow()
 
     private val _screenState: MutableStateFlow<BookmarkScreenState> =
