@@ -1,10 +1,13 @@
 # Overview
-- [검색화면 요구사항](https://github.com/nosorae/LezhinAssignment/issues/4) 완료 (검색 입력 후 1초 debounce 포함)
-- [북마크화면 요구사항](https://github.com/nosorae/LezhinAssignment/issues/5) 완료 (검색 입력 후 1초 debounce 포함)
-- [테블릿/폴더블/가로회전](https://github.com/nosorae/LezhinAssignment/issues/6) - 적용은 했으나 테블릿/가로만 테스트해보고 폴더블 테스트 못해본 상태
-- [다국어처리](https://github.com/nosorae/LezhinAssignment/issues/7) - 완료 (영어 추가)
-- [테마변경 대응](https://github.com/nosorae/LezhinAssignment/issues/8) - 완료 (Light/Dark)
-- Clean Architecture 적용 (data -> domain <- presentation, 의존성 명확히 하기 위해 레이어별 멀티모듈로 구성)
+- 기본적인 요구사항 모두 완료했습니다. (검색어 필드 요구사항도 아래 두 이슈에 포함됩니다.)
+    - [검색화면 요구사항](https://github.com/nosorae/LezhinAssignment/issues/4) - 완료 🟢
+    - [북마크화면 요구사항](https://github.com/nosorae/LezhinAssignment/issues/5) - 완료 🟢
+- 가산점 항목 상태는 아래와 같습니다. 
+    - [테블릿/폴더블/가로회전](https://github.com/nosorae/LezhinAssignment/issues/6) - 🟡 테블릿/가로만 테스트까지 해보고 폴더블 대응여부 모르는 상태
+    - [다국어처리](https://github.com/nosorae/LezhinAssignment/issues/7) - 완료 (영어 추가) 🟢
+    - [테마변경 대응](https://github.com/nosorae/LezhinAssignment/issues/8) - 완료 (Light/Dark) 🟢
+    - Clean Architecture 적용 - 완료 🟢
+        - (data -> domain <- presentation, 의존성 명확히 하기 위해 레이어별 멀티모듈로 구성) 
 - 간단한 스크린샷 첨부
 
 
