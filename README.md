@@ -1,3 +1,19 @@
+# Overview
+- [검색화면 요구사항](https://github.com/nosorae/LezhinAssignment/issues/4) 완료 (검색 입력 후 1초 debounce 포함)
+- [북마크화면 요구사항](https://github.com/nosorae/LezhinAssignment/issues/5) 완료 (검색 입력 후 1초 debounce 포함)
+- [테블릿/폴더블/가로회전](https://github.com/nosorae/LezhinAssignment/issues/6) - 적용은 했으나 테블릿/가로만 테스트해보고 폴더블 테스트 못해본 상태
+- [다국어처리](https://github.com/nosorae/LezhinAssignment/issues/7) - 완료 (영어 추가)
+- [테마변경 대응](https://github.com/nosorae/LezhinAssignment/issues/8) - 완료 (Light/Dark)
+- Clean Architecture 적용 (data -> domain <- presentation, 의존성 명확히 하기 위해 레이어별 멀티모듈로 구성)
+- 간단한 스크린샷 첨부
+
+
+| ![검색화면](https://github.com/user-attachments/assets/4b2439b2-3df0-4aaf-933d-48820917e7a6) | ![북마크화면](https://github.com/user-attachments/assets/e7da08f2-1045-4999-a8c8-805c7732ccdd) | ![선택모드](https://github.com/user-attachments/assets/0d8ff79a-bfbc-4d17-be48-5f6724feb3e8) |
+| :---: | :---: | :---: |
+| 검색 화면 | 북마크 화면 | 북마크 화면 - 멀티 선택 모드 |
+
+*시간부족으로 기능별 gif를 첨부하지 못했습니다
+
 # 사용한 기술, 활용한 라이브러리에 대한 설명, 사용이유 등
 
 - presentation layer
