@@ -54,6 +54,4 @@ dependencies {
     kapt(libs.google.dagger.hilt.compiler)
 
     implementation(libs.androidx.core.ktx)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
 }

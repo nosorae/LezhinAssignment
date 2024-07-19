@@ -59,9 +59,6 @@ dependencies {
     implementation(libs.squareup.retrofit2.converter.kotlinx.serialization)
 
     implementation(libs.jetbrains.kotlinx.serialization.json)
-
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
 }
 
 configure<org.jlleitschuh.gradle.ktlint.KtlintExtension> {
