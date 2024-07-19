@@ -21,6 +21,7 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.onSubscription
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
@@ -51,6 +52,9 @@ class BookmarkViewModel @Inject constructor(
         viewModelScope.launch {
             searchKeyword
                 .debounce(SearchViewModel.DEBOUNCE_TIME_MILLIS)
+                .onEach {
+                    _screenState.value = BookmarkScreenState.Loading
+                }
                 .flatMapLatest { keyword ->
                     getBookmarkImageUseCase(keyword = keyword).map { list ->
                         Pair(
